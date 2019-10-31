@@ -12,7 +12,6 @@
   "devDependencies": {},
   "scripts": {
     "start": "nodemon server.js",
-    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
