@@ -1,0 +1,134 @@
+#Getting the indentation right is SUPER IMPORTANT to make this work!
+#styles for Tangram map
+import:
+    - https://www.nextzen.org/carto/refill-style/refill-style.zip
+    - https://s3.amazonaws.com/xyz-demo/data/demo.yaml
+    - https://www.nextzen.org/carto/refill-style/themes/label-5.zip
+
+#The data sources uploaded earlier to HERE xyz
+#Will be loaded on top of base Tangram map
+sources:
+    solar:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/1P7lZgXJ/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    neighborhoods:
+        url: https://xyz.api.here.com/hub/spaces/u3NTM6aJ/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    trees:
+        url: https://xyz.api.here.com/hub/spaces/PZC7gnLE/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+
+# Styles the polygons of the chloropleth
+styles:
+    _polygons_inlay:
+        base: polygons
+        blend: inlay
+        blend_order: 1
+
+layers:
+    #Insturcts Tangram to draw data in the 'solar' source
+    _solar:
+        data: {source: solar}
+        enabled: true
+        _all:
+            draw:
+                points:
+                    collide: false
+                    #This simply marks all points with a black dot 5px wide:
+                    #color: "#000000"
+                    #size: 5
+
+                    #The size and colour of the dots change with the amount
+                    #of power made by the solar panels
+                    color: |
+                        #functie = function, wonen = homes
+                        # #FF5306=orange #FFC12B=gold. Thus, all home-installed panels
+                        # are orange dots
+                        function() {
+                            if (feature.Functie == 'Wonen') {
+                                return '#FF5306';
+                            } else {
+                                return '#FFC12B';
+                            }
+                        }
+                    size: |
+                        # JS function to return size of dots. Size calculated relative to power (Vermogen)
+                        #Vermogen = power 
+                        function() {
+                            var value = +feature.Vermogen;
+                            var size = Math.max(value/20000, 3);
+
+                            // If we are zoomed in very far, make the points bigger
+                            //'$zoom' is the current map view
+                            if ($zoom > 13) {
+                                return Math.pow(2, $zoom - 13) * size;
+                            }
+                            return size;
+                        }
+    _neighborhoods:
+        enabled: true
+        data: {source: neighborhoods}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.totalPower;
+                        //Colour gradient ranges from gray (lowest power) to red (mid power) to brown (highest power)
+                        var color = value >= 1267538 ? "rgba(127, 0, 0, 0.5)" :
+                                    value >= 1140784.2 ? "rgba(167, 4, 3, 0.5)" :
+                                    value >= 1014030.4 ? "rgba(200, 29, 19, 0.5)" :
+                                    value >= 887276.6 ? "rgba(224, 69, 48, 0.5)" :
+                                    value >= 760522.8 ? "rgba(241, 108, 73, 0.5)" :
+                                    value >= 633769 ? "rgba(250, 142, 93, 0.5)" :
+                                    value >= 507015.2 ? "rgba(253, 176, 122, 0.5)" :
+                                    value >= 380261.4 ? "rgba(253, 202, 148, 0.5)" :
+                                    value >= 253507.6 ? "rgba(253, 220, 175, 0.5)" :
+                                    value >= 126753.8 ? "rgba(254, 235, 207, 0.5)" :
+                                    "rgba(255, 247, 236, 0.3)";
+                        return color
+                    }
+            lines:
+                interactive: true
+                order: global.sdk_order_under_roads_0
+                color: black
+                width: 3px
+    _trees:
+        enabled: true
+        data: {source: trees}
+        draw:
+            points:
+                collide: false
+                color: '#00A000'
+                size: |
+                    # Diameter of each tree point scales by tree trunk diameter
+                    function() {
+                        var value = feature.Stamdiameter;
+                        var size =  value == "0 - 10 cm" ? 1.5 :
+                                    value == "11 - 20 cm" ? 2 :
+                                    value == "21 - 30 cm" ? 2.5 :
+                                    value == "31 - 50 cm" ? 3.25 :
+                                    value == "51 - 75 cm" ? 4 :
+                                    value == "76 - 100 cm" ? 5 :
+                                    1.5;
+                        //Sets dots to scale with zoom level
+                        if ($zoom > 13) {
+                            return Math.pow(1.5, $zoom - 13) * size;
+                        }
+
+                        return size;
+                    }
+
+
+
