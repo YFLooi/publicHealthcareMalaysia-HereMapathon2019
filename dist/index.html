@@ -25,11 +25,9 @@
             font-family: Helvetica, Arial, sans-serif;
         }
         .container {
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            position: absolute;
+            display: block;
+            height:800px;
+            width: 100%;
         }
         #map {
             height: 100%;
@@ -38,7 +36,7 @@
         #controls {
             position: absolute;
             left: 1em;
-            top: 100px;
+            top: 200px;
             z-index: 1000;
             background-color: rgba(200, 200, 200, 0.75);
             /* display: none; */
@@ -78,6 +76,8 @@
   </head>
 
   <body>
+    <h1>Expected final map, deployed onto Heroku</h1>
+    <div>Based on this tutorial: <a href='https://developer.here.com/tutorials/green-amsterdam/'>Green-Amsterdam by HERE maps</a></div>
     <div id="controls">
         <div id="solar" class="on" onclick="toggle('solar')">Solar installations</div>
         <div id="neighborhoods" class="on" onclick="toggle('neighborhoods')">Neighborhoods</div>
@@ -87,6 +87,7 @@
     <div class="container">
         <div id="map"></div>
     </div>
+
     <!-- Demo setup -->
     <script>
         //Determines if popup shown or trees counted
@@ -145,7 +146,7 @@
         });
         layer.addTo(map);
         // center of amsterdam
-        map.setView([52.372548, 4.893920], 12);
+        map.setView([52.332548, 4.893920], 12);
 
         function formatNumber(x) {
             //regular expression used to format solar power output 
@@ -167,6 +168,5 @@
             layer.scene.updateConfig();
         }
     </script>
-
   </body>
 </html>
