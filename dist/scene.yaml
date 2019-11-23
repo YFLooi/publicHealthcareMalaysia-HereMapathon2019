@@ -8,6 +8,27 @@ import:
 #The data sources uploaded earlier to HERE xyz
 #Will be loaded on top of base Tangram map
 sources:
+    stateBorders:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/GSedoX3G/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    districtBorders:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/sYm0uuVK/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    publicClinicLocations:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/6GOGViur/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
     solar:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/1P7lZgXJ/tile/web/{z}_{x}_{y}
@@ -34,47 +55,70 @@ styles:
         base: polygons
         blend: inlay
         blend_order: 1
+textures:
+    icons: 
+        url: clinicIconResized.PNG #1 image of many icons in a long strip
+        filtering: mipmap #cuts out images at specified positions
+        sprites:  # define sprite's: [x origin, y origin, width, height]. Default unit is px.
+            clinic: [0, 0, 32, 32]
+            
 
 layers:
-    #Insturcts Tangram to draw data in the 'solar' source
+    _stateBorders:
+        enabled: true
+        data: {source: stateBorders}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+            lines:
+                interactive: true
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 5px
+    _districtBorders:
+        enabled: true
+        data: {source: districtBorders}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+            lines:
+                interactive: true
+                order: global.sdk_order_under_roads_0
+                color: blue
+                width: 3px
+    _publicClinicLocations:
+        #Eyyy, replaced with icons!
+        data: {source: publicClinicLocations}
+        enabled: true
+        _all:
+            draw:
+                points:
+                    collide: false
+                    texture: icons
+                    sprite: clinic
+                    #Stops at zoom x, 1D size px. 
+                    #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
+                    size: [[6, 10px], [12, 20px], [20, 60px]]
+                    placement: spaced
+                    placement_spacing: [[17, 70px], [20, 175px]]
+                    
+    #Instructs Tangram to draw data in the 'solar' source
     _solar:
+        #Eyyy, replaced with icons!
         data: {source: solar}
         enabled: true
         _all:
             draw:
                 points:
                     collide: false
-                    #This simply marks all points with a black dot 5px wide:
-                    #color: "#000000"
-                    #size: 5
 
-                    #The size and colour of the dots change with the amount
-                    #of power made by the solar panels
-                    color: |
-                        #functie = function, wonen = homes
-                        # #FF5306=orange #FFC12B=gold. Thus, all home-installed panels
-                        # are orange dots
-                        function() {
-                            if (feature.Functie == 'Wonen') {
-                                return '#FF5306';
-                            } else {
-                                return '#FFC12B';
-                            }
-                        }
-                    size: |
-                        # JS function to return size of dots. Size calculated relative to power (Vermogen)
-                        #Vermogen = power 
-                        function() {
-                            var value = +feature.Vermogen;
-                            var size = Math.max(value/20000, 3);
-
-                            // If we are zoomed in very far, make the points bigger
-                            //'$zoom' is the current map view
-                            if ($zoom > 13) {
-                                return Math.pow(2, $zoom - 13) * size;
-                            }
-                            return size;
-                        }
+                    texture: icons
+                    sprite: clinic
+                    size: [[17, 18px], [18, 20px], [20, 32px]]
+                    placement: spaced
+                    placement_spacing: [[17, 70px], [20, 175px]]
     _neighborhoods:
         enabled: true
         data: {source: neighborhoods}
