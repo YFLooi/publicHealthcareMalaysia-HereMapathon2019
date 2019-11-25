@@ -24,7 +24,7 @@ sources:
         type: GeoJSON
     publicClinicLocations:
         #Tiled endpoint to the data source on HERE xyz
-        url: https://xyz.api.here.com/hub/spaces/6GOGViur/tile/web/{z}_{x}_{y}
+        url: https://xyz.api.here.com/hub/spaces/CnsQWqCa/tile/web/{z}_{x}_{y}
         url_params:
             access_token: ANOkxlf9QMWB72jUxUuT7AA
             clip: true
@@ -72,7 +72,7 @@ layers:
                 interactive: true
                 order: global.sdk_order_under_water_0
             lines:
-                interactive: true
+                interactive: false
                 order: global.sdk_order_under_roads_0
                 color: green
                 width: 5px
@@ -84,7 +84,7 @@ layers:
                 interactive: true
                 order: global.sdk_order_under_water_0
             lines:
-                interactive: true
+                interactive: false
                 order: global.sdk_order_under_roads_0
                 color: blue
                 width: 3px
@@ -95,20 +95,19 @@ layers:
         _all:
             draw:
                 points:
-                    collide: false
+                    interactive: true #Must for popups to occur
                     texture: icons
                     sprite: clinic
                     #Stops at zoom x, 1D size px. 
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
-                    size: [[6, 10px], [12, 20px], [20, 60px]]
-                    placement: spaced
-                    placement_spacing: [[17, 70px], [20, 175px]]
+                    size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
+                    
                     
     #Instructs Tangram to draw data in the 'solar' source
     _solar:
         #Eyyy, replaced with icons!
         data: {source: solar}
-        enabled: true
+        enabled: false
         _all:
             draw:
                 points:
@@ -149,7 +148,7 @@ layers:
                 color: black
                 width: 3px
     _trees:
-        enabled: true
+        enabled: false
         data: {source: trees}
         draw:
             points:
