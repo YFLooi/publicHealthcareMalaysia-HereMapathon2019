@@ -95,12 +95,16 @@ layers:
         _all:
             draw:
                 points:
+                    collide: false #MUST to prevent nearby features from being burried!
+                    placement: spaced
+                    placement_spacing: [[17, 70px], [20, 175px]]
                     interactive: true #Must for popups to occur
                     texture: icons
                     sprite: clinic
                     #Stops at zoom x, 1D size px. 
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
-                    size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
+                    #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
+                    size: [[6, 10px], [12, 20px], [20, 60px]]
                     
                     
     #Instructs Tangram to draw data in the 'solar' source
