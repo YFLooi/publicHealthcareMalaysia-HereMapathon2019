@@ -1,5 +1,6 @@
-//Determines if popup shown or trees counted
+//Determines if popups to be shown or counter enabled
 var mode = 'notFeatureCount';
+//Determines which feature counter should count
 var spaceIDSelected = 'CnsQWqCa'
 
 //counts number of trees in bounding box
@@ -82,10 +83,10 @@ function onClick(selection) {
             layer.openTooltip(selection.leaflet_event.latlng);
         
             /** 
-            //formatNumber(power)
+            //
             popup
                 .setLatLng(latlng)
-                .setContent('<p><strong>Name:</strong> ' + name + '</p><p>Location: ' + location + ' kW</p>')
+                .setContent('<p><strong>Name:</strong> ' + name + '</p><p>Location: ' + location + 'Power output:'+ formatNumber(power) + 'kW'</p>')
                 .openOn(map);
             */
         
@@ -103,19 +104,25 @@ var popup = L.popup({closeButton: false});
 // Determines what pops up after clicking a feature
 function getFeaturePropsHTML (feature) {
     var props = ['name', 'location', 'tel']; // show these properties first if available
-    Object.keys(feature.properties) // show rest of proeprties alphabetized
-        .sort()
-        .forEach(function(p) {
-            if (props.indexOf(p) === -1) {
+    Object.keys(feature.properties)
+        .sort()  // Sorts arriving properties alphabetized
+        //Only adds feature.properties that are not in props, to the end of props array
+        //'@ns:com:here:xyz' is an annoying property that HERE xyz adds. Removed by the conditional added
+        .forEach(function(p) { 
+            console.log(p)
+            if (props.indexOf(p) === -1 && p!== '@ns:com:here:xyz') {
                 props.push(p);
             }
         });
 
     var info = '<div class="featureTable">';
     props.forEach(function(p) {
-        if (feature.properties[p]) {
+        if (feature.properties[p] && p!=='population') {
             info += '<div class="featureRow"><div class="featureCell"><b>' + p + '</b></div>' +
                 '<div class="featureCell">' + feature.properties[p] + '</div></div>';
+        } else if (feature.properties[p] && p=='population') { //Ensures population number has a comma for every 3 numbers
+            info += '<div class="featureRow"><div class="featureCell"><b>' + p + '</b></div>' +
+                '<div class="featureCell">' + formatNumber(feature.properties[p]) + '</div></div>';
         }
     });
 

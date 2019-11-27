@@ -31,7 +31,7 @@
     <div class="mapContainer">
         <div id="map"></div>
     </div>
-    <div>**Refresh page to reset</div>
+    <div>**Refresh page to reset. Click to open description</div>
 
     <!--
     <div id="controls">
@@ -43,18 +43,18 @@
     -->
     <div class="layerControls">
       <div class="featuresCheckboxes">
-        <h3>Features</h3>
-        <input id="stateBorders" type="checkbox" checked name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
-        <input id="districtBorders" type="checkbox" checked name="checkFeature" onclick="toggle('districtBorders')">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
+        <h3 style='text-align: center; width:100%;'>Features</h3>
+        <input id="stateBorders" type="checkbox" name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
+        <input id="districtBorders" type="checkbox" name="checkFeature" onclick="toggle('districtBorders')">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
         <input id="publicClinicLocations" type="checkbox" checked name="checkFeature" onclick="toggle('publicClinicLocations')">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
       </div>
       <div class="heatmapCheckboxes">
-        <h3>Heatmaps</h3>
-        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('population');">&nbsp;&nbsp;<span>Population</span><br/>
+        <h3 style='text-align: center; width:100%;'>Heatmaps</h3>
+        <input type="checkbox" checked  name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapStatePopulation');">&nbsp;&nbsp;<span>Population</span><br/>
         <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
       </div>
       <div class="controlButtons">
-        <h3>Tools</h3>
+        <h3 style='text-align: center; width:100%;'>Tools</h3>
         <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
       </div>
     </div>  
