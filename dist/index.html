@@ -43,20 +43,19 @@
     -->
     <div class="layerControls">
       <div class="featuresCheckboxes">
-          <h3>Features</h3>
-          <input id="stateBorders" type="checkbox" checked name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
-          <input id="districtBorders" type="checkbox" checked name="checkFeature" onclick="toggle('districtBorders')">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
-          <input id="publicClinicLocations" type="checkbox" checked name="checkFeature" onclick="toggle('publicClinicLocations')">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
+        <h3>Features</h3>
+        <input id="stateBorders" type="checkbox" checked name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
+        <input id="districtBorders" type="checkbox" checked name="checkFeature" onclick="toggle('districtBorders')">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
+        <input id="publicClinicLocations" type="checkbox" checked name="checkFeature" onclick="toggle('publicClinicLocations')">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
       </div>
       <div class="heatmapCheckboxes">
         <h3>Heatmaps</h3>
-        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('stateBorders');">&nbsp;&nbsp;<span>Population</span><br/>
-        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('stateBorders');">&nbsp;&nbsp;<span>Dummy</span><br/>
+        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('population');">&nbsp;&nbsp;<span>Population</span><br/>
+        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
       </div>
       <div class="controlButtons">
-          <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
-          &nbsp;||&nbsp;
-          <button type='button' class='btn btn-secondary'>Heatmap on/off</button>
+        <h3>Tools</h3>
+        <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
       </div>
     </div>  
     <div class='statistics'>
