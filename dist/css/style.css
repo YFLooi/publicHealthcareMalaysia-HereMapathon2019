@@ -53,4 +53,9 @@ body {
     background-color: #44AA00;
     box-shadow: 4px 4px 4px black;
 }
+
+.layerControls {
+    border: 2px solid black;
+    padding: 0.5%;
+}
   

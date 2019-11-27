@@ -37,6 +37,7 @@ function countTrees() {
 }
 
 var map = L.map('map', {boxZoom: false});
+L.control.scale().addTo(map); //Adds scale bar to map
 //Creates Tangram as a Leaflet layer
 var layer = Tangram.leafletLayer({
     scene: 'scene.yaml',
@@ -56,8 +57,8 @@ layer.addTo(map);
  */
 map.setView([4.354682, 109.308983], 6);
 
- // Feature selection
- var tooltip = L.tooltip();
+// Feature selection
+var tooltip = L.tooltip();
  layer.bindTooltip(tooltip);
  map.on('zoom', function(){ layer.closeTooltip() }); // close tooltip when zooming
 /**
@@ -143,6 +144,12 @@ function getFeaturePropsHTML (feature) {
  */
 function toggle(layerName) {
     layer.scene.config.layers["_" + layerName].enabled = !layer.scene.config.layers["_" + layerName].enabled;
-    document.getElementById(layerName).className = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
+    //document.getElementById(layerName).className = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
     layer.scene.updateConfig();
+}
+function onlyOneHeatmap(checkbox) {
+    var checkboxes = document.getElementsByName('checkHeatmap')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
 }

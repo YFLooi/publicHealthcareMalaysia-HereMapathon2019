@@ -26,24 +26,40 @@
     <script src="./js/leaflet.spin.min.js"></script>
    
   </head>
-  <body>
+  <body class='container'>
     <h1>Public Healthcare in Malaysia</h1>    
     <div class="mapContainer">
         <div id="map"></div>
     </div>
     <div>**Refresh page to reset</div>
+
+    <!--
     <div id="controls">
         <div id="solar" class="on" onclick="toggle('solar')">Solar installations</div>
         <div id="neighborhoods" class="on" onclick="toggle('neighborhoods')">Neighborhoods</div>
         <div id="trees" class="off" onclick="toggle('trees')">Trees</div>
-        <div id="counttrees" class="off" onclick="countTrees()">Count trees</div>
+        
     </div>
+    -->
     <div class="layerControls">
-        <button type='button' class='btn btn-primary'>Thermal anomalies</button>
-        &nbsp;||&nbsp;
-      <button type='button' class='btn btn-secondary'>Heatmap on/off</button>
+      <div class="featuresCheckboxes">
+          <h3>Features</h3>
+          <input id="stateBorders" type="checkbox" checked name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
+          <input id="districtBorders" type="checkbox" checked name="checkFeature" onclick="toggle('districtBorders')">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
+          <input id="publicClinicLocations" type="checkbox" checked name="checkFeature" onclick="toggle('publicClinicLocations')">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
+      </div>
+      <div class="heatmapCheckboxes">
+        <h3>Heatmaps</h3>
+        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('stateBorders');">&nbsp;&nbsp;<span>Population</span><br/>
+        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('stateBorders');">&nbsp;&nbsp;<span>Dummy</span><br/>
+      </div>
+      <div class="controlButtons">
+          <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
+          &nbsp;||&nbsp;
+          <button type='button' class='btn btn-secondary'>Heatmap on/off</button>
+      </div>
     </div>  
-    <div class='container'>
+    <div class='statistics'>
         <h1>Malaysia vs the WHO</h1>
         <div>...Insert progress bars here...</div>
     </div>
