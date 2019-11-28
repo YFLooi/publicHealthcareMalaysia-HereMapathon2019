@@ -1,0 +1,132 @@
+latitude,longitude,name,address,tel,fax,website
+1.836339,102.939944,HOSPITAL BATU PAHAT,"Jalan Korma Taman Soga, 83000, Batu Pahat, Johor",07-4363000,07-4322544,http://hbp.moh.gov.my
+1.45852,103.74591,"HOSPITAL SULTANAH AMINAH, JOHOR BAHRU","Johor Bahru, 80100, Johor Bahru, Johor",07-2257000,07-2242694,http://hsajb.moh.gov.my
+1.639183,103.622584,"HOSPITAL TEMENGGONG SERI MAHARAJA TUN IBRAHIM, KULAI","Kulai, 81000, Johor Bahru, Johor",07-6623333,07-6622605,
+1.546984,103.790915,"HOSPITAL SULTAN ISMAIL, PANDAN","Jalan Persiaran Mutiara, Emas Utama, 81100, Johor Bahru, Johor",07-7565000,07-7565034,
+2.038021,103.312343,HOSPITAL KLUANG,"Jalan Hospital, 86000, Kluang, Johor",07-7723333,07-7734498,hosp_kluang@moh.gov.my
+1.736114,103.899403,HOSPITAL KOTA TINGGI,"Jalan Lombong, 81900, Kota Tinggi, Johor",07-8831131,07-8831333,http://hkotatinggi.moh.gov.my
+2.429132,103.84569,HOSPITAL MERSING,"Jalan Ismail, 86800, Mersing, Johor",07-7993333,07-7994200,http://hospmersing.moh.gov.my
+2.271817,102.547182,HOSPITAL TANGKAK,"Jalan Hospital,  Tangkak Muar, 84900, Muar, Johor",06-9782792,06-9786521,http://htgk.moh.gov.my
+2.057237,102.574633,"HOSPITAL PAKAR SULTANAH FATIMAH, MUAR","Jalan Salleh, 84000, Muar, Johor",06-9521901,06-9526003,
+1.4988,103.38598,HOSPITAL PONTIAN,"Jalan Alsagoff, 82000, Pontian, Johor",07-6873333,07-6876211,
+2.50516,102.81534,HOSPITAL SEGAMAT,"KM 6 Jalan Genuang, 85000, Segamat, Johor",07-9433333,07-9434641,hospsg@moh.gov.my
+5.678734,100.92521,HOSPITAL BALING,"Jalan Hospital, 9100, Baling, Kedah",04-4701333,04-4701160,http://hbaling.moh.gov.my
+6.148404,100.406788,HOSPITAL SULTANAH BAHIYAH,"KM 6, Jalan Langgar, 5460, Alor Star, Kedah",04-7303333,04-7323770,http://hsb.moh.gov.my
+5.669613,100.516499,"HOSPITAL SULTAN ABDUL HALIM, SUNGAI PETANI","Lencongan Timur Barat Aman Jaya, 8000, Sungai Petani, Kedah",04-4480095,04-4480092,http://hsah.moh.gov.my
+6.278285,100.419748,HOSPITAL JITRA,"Jalan Changlun, 6000, Jitra, Kedah",04-9174333,04-9176346,
+5.393173,100.573329,HOSPITAL KULIM,"Jalan Machang, 9000, Kulim, Kedah",04-4909975,04-4900760,http://hkulim.moh.gov.my
+6.325404,99.796596,HOSPITAL LANGKAWI,"Bukit Teguh, 7000, Langkawi, Kedah",04-9663333,04-9660121,
+6.252255,100.609438,HOSPITAL KUALA NERANG,"Nerang, 6300, Kuala Nerang, Kedah",04-7867050,04-7867052,http://hknerang.moh.gov.my
+5.811514,100.727299,HOSPITAL SIK,"Sik, 8200, Sik, Kedah",04-4695333,04-4695990,hsik@moh.gov.my
+5.820893,100.384388,HOSPITAL YAN,"Yan, 6900, Yan, Kedah",04-4655333,04-4655960,http://.hyan.moh.gov.my
+4.858255,101.954683,HOSPITAL GUA MUSANG,"Bandar Baru, 18300, Gua Musang, Kelantan",09-9133300,09-9121302,http://hogum.moh.gov.my
+5.701156,101.844461,HOSPITAL JELI,"Hospital Jeli, 17600, Jeli, Kelantan",09-9443300,09-9440068,
+6.125567,102.245691,"HOSPITAL RAJA PEREMPUAN ZAINAB II, KOTA BHARU","Jalan Hospital, 15586, Kota Bharu, Kelantan",09-7485533,09-7486951,http://hrpz2.moh.gov.my
+5.535636,102.199282,HOSPITAL KUALA KRAI,"Jalan Kota Bharu, 18000, Kuala Krai, Kelantan",09-9666333,09-9666076,
+5.763276,102.224921,HOSPITAL MACHANG,"Jalan Pasir Puteh, 18500, Machang, Kelantan",09-9752533,09-9752470,
+6.014316,102.119101,HOSPITAL PASIR MAS,"Jalan Meranti, 17000, Pasir Mas, Kelantan",09-7909333,09-7900996,http://hmas.moh.gov.my
+5.832866,102.387502,"HOSPITAL TENGKU ANIS, PASIR PUTEH","Jalan Pasir Puteh, 16800, Pasir Puteh, Kelantan",09-7866333,09-7868558,
+5.809696,102.152541,HOSPITAL TANAH MERAH,"Jalan Hospital, 17500, Tanah Merah, Kelantan",09-9557333,09-9557929,htm@klt.moh.gov.my
+6.189896,102.157181,HOSPITAL TUMPAT,"Jalan Kelaburan, 16200, Tumpat, Kelantan",09-7257533,09-7257082,http://www.htumpat.moh.gov.my
+2.381015,102.207352,HOSPITAL ALOR GAJAH,"Hospital Alor Gajah, 78000, Alor Gajah, Melaka",06-5561400,06-5568369,
+2.304796,102.428502,HOSPITAL JASIN,"Hospital Jasin, 77000, Jasin, Melaka",06-5294262,06-5295262,http://hjasin.moh.gov.my
+2.218645,102.260403,HOSPITAL MELAKA,"Jalan Mufti Haji Khalil, 75400, Melaka Tengah, Melaka",06-2892344,06-2841590,http://hmelaka.moh.gov.my
+2.950434,102.058889,HOSPITAL JELEBU,"71600 Jelebu, 71600, Jelebu, Negeri Sembilan",06-6136355,06-6137531,http://hjelebu.moh.gov.my
+2.903466,102.40637,HOSPITAL JEMPOL,"Bandar Seri Jempol, 72120, Jempol, Negeri Sembilan",06-4592000,06-4581086,http://www.hjempol.gov.my
+2.733345,102.23188,"HOSPITAL TUANKU AMPUAN NAJIHAH, KUALA PILAH","KM 3 Jalan Melang, 72000, Kuala Pilah, Negeri Sembilan",06-4818001,06-4818010,http://www.htan.moh.gov.my
+2.477803,101.855201,HOSPITAL PORT DICKSON,"KM 11, Jalan Pantai, 71050, Si Rusa Port Dickson, Negeri Sembilan",06-6626333,06-6625003,http://www.hpd.moh.gov.my
+2.709764,101.94472,"HOSPITAL TUANKU JA'AFAR, SEREMBAN","Jalan Rasah, 70300, Seremban, Negeri Sembilan",06-7623333,06-7625771,http://www.htjs.gov.my
+2.471155,102.228212,HOSPITAL TAMPIN,"Jalan Haji Ahmad Zainuddin, 73009, Tampin, Negeri Sembilan",06-4411511,06-4419610,http://www.htampin.moh.gov.my
+3.526144,101.906347,HOSPITAL BENTONG,"Bentong, 28700, Bentong, Pahang",09-2223333,09-2224494,http://hspben.moh.gov.my
+4.466803,101.390673,"HOSPITAL SULTANAH HAJJAH KALSOM, CAMERON HIGHLANDS","Jalan Persiaran Dayang Endah, 39000, Tanah Rata, Pahang",05-4911966,05-4914355,www.hcameron.moh.gov.my
+3.929246,102.360706,HOSPITAL JERANTUT,"Jerantut, 27000, Jerantut, Pahang",09-2663333,09-2661462,
+3.799259,103.321206,"HOSPITAL TENGKU AMPUAN AFZAN, KUANTAN","Jalan Tanah Putih, 25100, Kuantan, Pahang",09-5572222,09-5142712,
+4.18354,102.05501,HOSPITAL KUALA LIPIS,"Jalan Pekeliling, 27200, Kuala Lipis, Pahang",09-3123333,09-3121787,hsplip@phg.moh.gov.my
+3.772436,102.552776,HOSPITAL JENGKA,"Bandar Pusat Jengka, 26400, Bandar Pusat Jengka, Pahang",09-4662333,09-4663215,
+3.503059,103.379757,HOSPITAL PEKAN,"Jalan Batu Balik, 26600, Pekan, Pahang",09-4223333,09-4222280,hsppek@phg.moh.gov.my
+3.809944,101.852236,HOSPITAL RAUB,"Jalan Tengku Abd Samad, 27600, Raub, Pahang",09-3553333,09-3554331,hsprau@moh.gov.my
+3.053089,103.091749,HOSPITAL MUADZAM SHAH,"Jalan Kemajuan, 26700, Muadzam Shah, Pahang",09-4523333,09-4523055,http://hshah.moh.gov.my
+3.453936,102.451887,"HOSPITAL SULTAN HJ AHMAD SHAH, TEMERLOH","Jalan Maran, 28000, Temerloh, Pahang",09-2955333,09-2972468,http://hoshas.moh.gov.my
+5.350582,100.233089,HOSPITAL BALIK PULAU,"Jalan Balik Pulau, 11000, Balik Pulau, Pulau Pinang",04-8669333,04-8666058,hbpulau.moh.gov.my
+5.42021,100.30957,HOSPITAL PULAU PINANG,"Pejabat Pengarah Hospital, Hospital Pulau Pinang, Jalan Residensi, 10990, Georgetown, Pulau Pinang",04-2225333,04-2281737,http://hpp.moh.gov.my
+5.218512,100.49741,HOSPITAL SUNGAI BAKAP,"Jalan Besar Sungai Bakap, 14200, Seberang Prai, Pulau Pinang",04-5822494/ 04-58243,04-5822494,
+5.394912,100.406509,HOSPITAL SEBERANG JAYA,"Jalan Tun Hussein Onn, 13700, Seberang Jaya, Pulau Pinang",04-3827333,04-3970754,http://hsbjy.moh.gov
+5.359892,100.464599,HOSPITAL BUKIT MERTAJAM,"Jalan Kulim, 14000, Pulau Pinang, Pulau Pinang",04-5382333,04-5388435,
+5.51239,100.43688,HOSPITAL KEPALA BATAS,"Jalan Bertam 2, 13200, Kepala Batas, Pulau Pinang",04-5793333,04-5791088,http://hkbatas.moh.gov.my
+3.837642,101.404475,HOSPITAL SLIM RIVER,"Jalan Hospital, 35900, Slim River, Perak",05-4526467,05-4526697,http://hsr.moh.gov.my
+4.200982,101.260384,HOSPITAL TAPAH,"Jalan Temoh, 35000, Tapah, Perak",05-4011333,05-4012333,http://htapah.moh.gov.my
+4.004601,101.040124,HOSPITAL TELUK INTAN,"Jalan Changkat Jong, 36000, Teluk Intan, Perak",05-6213333,05-6219546,
+5.429134,101.127511,HOSPITAL GERIK,"Jalan Intan, 33000, Grik, Perak",05-7911333,05-7911945,hgerik.moh.gov.my
+5.131242,100.4837,HOSPITAL PARIT BUNTAR,"Jalan Sempadan, 34200, Parit Buntar, Perak",05-7163333,05-7169675,http://hptar.moh.gov.my
+4.311962,101.156333,HOSPITAL KAMPAR,"Jalan Hospital, 31900, Kampar, Perak",05-4653333,05-4655664,
+4.479592,101.033943,HOSPITAL BATU GAJAH,"Jalan Changkat, 31000, Batu Gajah, Perak",05-3663333,05-3663851,http://hbgjh.moh.gov.my
+4.603792,101.090193,HOSPITAL IPOH,"Jalan Hospital, 30990, Ipoh, Perak",05-2533333,05-2531541,http://hipoh.moh.gov.my
+4.773262,100.931822,HOSPITAL KUALA KANGSAR,"Jalan Sultan Idris Shah 1, 33000, Kuala Kangsar, Perak",05-7763333,05-7769660,http://hkangsar.moh.gov.my
+4.827163,101.056572,HOSPITAL SUNGAI SIPUT,"Jalan Felda Lasah, 31100, Sungai Siput, Perak",05-5983333,05-5971834,http:hsgsiput.moh.gov.my
+5.213123,100.68887,HOSPITAL SELAMA,"Jalan Taiping, 34100, Selama, Perak",05-8083333,05-8394204,http://www.hselama.moh.gov.my
+4.851042,100.736961,HOSPITAL TAIPING,"Jalan Taming Sari, 34000, Taiping, Perak",05-8083333,05-8073894,http://htaiping.moh.gov.my
+4.18568,100.662163,HOSPITAL SERI MANJUNG,"Seri Manjung, 32040, Seri Manjung, Perak",05-6881333,05-6884013,http://www.hsmanjung.moh.gov.my
+4.312711,100.910293,HOSPITAL CHANGKAT MELINTANG,"Lambor Kanan, 32900, Lambor Kanan, Perak",05-3761333,05-3761400,http://www.hcm.moh.gov.my
+6.440995,100.191337,HOSPITAL TENGKU FAUZIAH,"Jalan Kolam, 1000, Kangar , Perlis",04-9763333,04-9767237,http://www.htf.gov.my
+3.243053,101.647198,HOSPITAL SELAYANG,"Lebuhraya Selayang-Kepong, 68100, Batu Caves, Selangor",03-61203233,03-61377097,
+3.220112,101.583028,HOSPITAL SUNGAI BULUH,"Jalan Hospital, 47000, Sungai Buloh, Selangor",03-61454333,03-61454222,
+2.993393,101.792729,HOSPITAL KAJANG,"Jalan Semenyih, 43000, Kajang, Selangor",03-87343333,03- 87367527,
+3.128273,101.763378,HOSPITAL AMPANG,"Jalan Mewah Utara, Pandan Mewah, 68000, Ampang, Selangor",03-42896000,03-42954666,http://www.hamp.moh.gov.my
+3.564983,101.652827,HOSPITAL KUALA KUBU BHARU,"Jalan Hospital, 44000, Kuala Kubu Bharu, Selangor",03-60641333,03- 60643039,http://hkkb.moh.gov.my
+3.020082,101.439859,HOSPITAL TENGKU AMPUAN RAHIMAH,"Persiaran Tengku Ampuan Rahimah, 41200, Klang , Selangor",03- 33723333,03-233729089,http://htar.moh.gov.my
+2.803472,101.49389,HOSPITAL BANTING,"Jalan Sultan Alam Shah, 42700, Banting, Selangor",03-31871333,03- 31871153,
+3.424991,101.179107,HOSPITAL TANJUNG KARANG,"Jalan Besar, 45500, Tanjung Karang, Selangor",03-32698333,03-32695907,
+3.759921,100.989075,"HOSPITAL TENGKU AMPUAN JEMAAH, SABAK BERNAM","Hospital Tengku Ampuan Jemaah, , 45200, Sabak Bernam, Selangor",03-32163333,03-32164333,
+2.976263,101.720189,HOSPITAL SERDANG,"Jalan Puchong, 43300, Kajang, Selangor",03-89475555,03-89475050,
+5.514307,102.770142,HOSPITAL SETIU,"Bandar Permaisuri, 22100, Setiu, Terengganu",09-6090333,09-6090377,http://www.hsetiu.moh.gov.my
+5.729077,102.493452,HOSPITAL BESUT,"Jerteh, 22000, Besut, Terengganu",09-6971130,09-6972762,www.Hbesut.moh.gov.my
+4.752088,103.414453,HOSPITAL DUNGUN,"Jalan Gong Pasir 4, 23000, Dungun, Terengganu",09-8443333,09-8444160,http://hdungun.moh.gov.my
+5.073457,103.044823,HOSPITAL HULU TERENGGANU,"Batu 23 Jalan Kuala Berang, 21700, Hulu Terengganu, Terengganu",09-6813333,09-6813099,
+4.232059,103.420885,HOSPITAL KEMAMAN,"Jalan Dato Omar, 24000, Kemaman, Terengganu",09-8593333,09-8595512,http://hkemamane trg
+5.324317,103.151292,"HOSPITAL SULTANAH NUR ZAHIRAH, KUALA TERENGGANU","Jalan Sultan Mahmud, 20400, Kuala Terengganu, Terengganu",09-6233333,09-6221820,
+5.350967,115.740929,HOSPITAL BEAUFORT,"Peti Surat 40, 89807, Beaufort, Sabah",087-212333,087-211725,http://hbeaufort.moh.gov.my
+5.34077,116.15946,HOSPITAL KENINGAU,"Km 5 , Jalan Apin-apin , Peti Surat 11, 89007, Keningau, Sabah",087-313000,087-331595,
+5.5853,117.85,HOSPITAL KINABATANGAN,"W.D.T 200, 90020, Kinabatangan, Sabah",089-561858,089-561854,
+6.3457,116.42669,HOSPITAL KOTA BELUD,"Peti Surat 159, 89150, Kota Belud, Sabah",088-976333,088-976911,http://hkotabelud.moh.gov.my
+6.01396,116.11912,HOSPITAL LIKAS,"Karung Berkunci 187, 88996, Kota Kinabalu, Sabah",088-522600,088-438512,http://hwkks.moh.gov.my
+5.956588,116.072735,"HOSPITAL QUEEN ELIZABETH, KOTA KINABALU","Karung Berkunci No.2029, 88586, Kota Kinabalu, Sabah",088-517555,088-318605,http://qeh.moh.gov.my
+6.45728,116.77499,HOSPITAL KOTA MARUDU,"Peti Surat 255, 89108, Kota Marudu, Sabah",088-661984,088-663759,
+5.5608,115.58533,HOSPITAL KUALA PENYU,"W.D.T. 35, 89740, Kuala Penyu, Sabah",087-853100,087-884212,http://hspkpyu.moh.gov.my
+6.90774,116.83814,HOSPITAL KUDAT,"Peti Surat 22, 89057, Kudat, Sabah",088-613333,088-611875,
+4.67799,118.23137,HOSPITAL KUNAK,"W.D.T. 150, 91209, Kunak, Sabah",089-894100,089-853285,h_knk@sbh.moh.gov.my
+5.02755,118.31443,"HOSPITAL DATIN SERI ENDON, LAHAD DATU","Peti Surat 60065, 60065, Lahad Datu, Sabah",089-895111,089-884670,http://hldu.moh.gov.my
+5.892804,117.557788,HOSPITAL BELURAN,"Karung Berkunci No : 02, 90109, Beluran, Sabah",089-511233/333,089-511242,www.moh.gov.com.my
+5.72673,115.92404,HOSPITAL PAPAR,"Peti Surat No. 6,, 89607, Papar, Sabah",088-913333,088-913587,
+6.71252,117.02924,HOSPITAL PITAS,"Peti Surat 88, 89100, Pitas, Sabah",088-676100,088-611203,http://hpitas.moh.gov.my
+5.95367,116.67064,HOSPITAL RANAU,"Peti Surat 65, 89300, Ranau, Sabah",088-875266,088-875223,http://www.hranau.moh.gov.my
+5.858905,118.102986,"HOSPITAL DUCHESS OF KENT, SANDAKAN","KM 3.2, Jalan Utara, 90000, Sandakan, Sabah",089-212111,089-213607,http://hdok.moh.gov.my
+4.483205,118.604336,HOSPITAL SEMPORNA,"Peti Surat 80, 91307, Semporna, Sabah",089-781522,089-781659,
+5.09663,115.56287,HOSPITAL SIPITANG,"Peti Surat 250, 89857, Sipitang, Sabah",087-822296,087-822304,
+5.682566,116.370771,HOSPITAL TAMBUNAN,"Peti Surat 10, 89657, Tambunan, Sabah",087-774333,087-774102,
+4.24924,117.879487,HOSPITAL TAWAU,"Peti Surat 80, 91007, Tawau, Sabah",089-773533,089-778626,
+5.1235,115.94367,HOSPITAL TENOM,"Peti surat 97, 89907, Tenom, Sabah",087-735577,087-735550,
+6.14395,116.21911,HOSPITAL TUARAN,"Peti Surat 996, 89207, Tuaran, Sabah",088-788317,088-788167,
+1.74715,111.3397,HOSPITAL SARATOK,"KM 1, Jalan Saratok, 95400, Saratok, Sarawak",083-436311,083-436917,
+1.37434,111.57376,HOSPITAL BETONG,"Jalan Betong, 95700, Betong, Sarawak",083-472821,083-472664,
+3.23015,113.10026,HOSPITAL BINTULU,"Jalan Nyabau, 97000, Bintulu, Sarawak",086-255899,086-255866,http://hbtu.moh.gov.my
+2.0141,112.94297,HOSPITAL KAPIT,"Jalan Memora, 96800, Kapit, Sarawak",084-796333,084-798333,
+1.42923,110.1424,HOSPITAL BAU,"Batu 1,  Jalan Bau-Lundu, 94000, Bau, Sarawak",082-763711,082-763716,http://hbau.moh.gov.my
+4.85454,115.4047,HOSPITAL LAWAS,"Jalan Hospital, 98850, Lawas, Sarawak",085-283781,085-285993,http://www.hlawas.moh.gov.my
+1.544093,110.339401,HOSPITAL UMUM KUCHING,"Jalan Tun Ahmad Zaidi Adruce, 93586, Kuching, Sarawak",082-257555,082-242751,
+1.6719,109.84854,HOSPITAL LUNDU,"Jalan Sekambal, 94500, Lundu, Sarawak",082-735311,082-735055,
+4.76468,115.01857,HOSPITAL LIMBANG,"Jalan Pandaruan, 98700, Limbang, Sarawak",085-211200,,hosp_limbang@srwk.moh.gov.my
+4.18083,114.33167,HOSPITAL MARUDI,"Jalan Pungor, 98050, Marudi, Sarawak",085-755511,085-755217,
+4.373951,113.998249,HOSPITAL MIRI,"Jalan Cahaya Lopeng, 98000, Miri, Sarawak",085-420033,085-416514,http://hmiri.moh.gov.my
+2.51615,111.4333,HOSPITAL DARO,"Jalan Itol, 96200, Daro, Sarawak",084-823620,084-823624,
+2.861584,111.882231,HOSPITAL DALAT,"Dalat, 96300, Dalat, Sarawak",084-863213,084-863058,
+2.90217,112.0778,HOSPITAL MUKAH,"Jalan Haji Mohamed Pauzi, 96400, Mukah, Sarawak",084-871333,084-872212,
+1.38258,110.75081,HOSPITAL SIMUNJAN,"Jalan Gunung Ngeli, 94800, Simunjan, Sarawak",082-803982,082-803988,hosp_simunjan@srwk.moh.gov.my
+1.17676,110.56375,HOSPITAL SERIAN,"Hospital Serian, 94700, Serian, Sarawak",082-874311,082-875182,
+2.13191,111.49267,HOSPITAL SARIKEI,"Jalan Hospital, 96100, Sarikei, Sarawak",084-653333,084-653409,
+2.102514,112.151932,HOSPITAL KANOWIT,"Jalan Kanowit, Durin, 96700, Kanowit, Sarawak",084-752333,084-752682,hkanowit.moh.gov.my
+2.297191,111.892144,HOSPITAL SIBU,"Batu 5,  Jalan Ulu Oya, 96000, Sibu, Sarawak",084-343333,084-337354,
+1.23401,111.46274,HOSPITAL SRI AMAN,"Jalan Hospital, 95000, Sri Aman, Sarawak",083-322151,083-323063,
+3.171983,101.699818,HOSPITAL KUALA LUMPUR,"Jalan Pahang, 50586, Kuala Lumpur, Wilayah Persekutuan ",03-26155555,03-26989845,
+5.31062,115.23066,HOSPITAL LABUAN,"Peti Surat , 81006, Labuan, Wilayah Persekutuan ",087-423922/423919,?087-423928,http://hlabuan.moh.gov.my
+2.929623,101.673299,HOSPITAL PUTRAJAYA,"Pusat Pentadbiran Kerajaan Persekutuan Presint 7, 62250, Putrajaya, 62250, Putrajaya, Wilayah Persekutuan ",03-88880080,03-88880137,http://www.hpj.gov.my
+1.388798,110.322502,HOSPITAL RAJAH CHARLES BROOKE MEMORIAL,"Bt 13, Jalan Puncak Borneo, Kota Padawan, 93250, Kuching, Sarawak",082-611123,082-616582,

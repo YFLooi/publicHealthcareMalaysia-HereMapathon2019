@@ -22,5 +22,5 @@ app.get('/', function (req, res) {
 //App will run on process.env.PORT by default. 
 //It runs on port 4000 only if process.env.PORT is not defined
 app.listen(process.env.PORT || 4000, function () {
-    console.log('App running on port 4040 or 4000');
+    console.log('App running on port 8080 or 4000');
 });

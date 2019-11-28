@@ -46,7 +46,7 @@ styles:
         blend_order: 1
 textures:
     icons: 
-        url: clinicIconResized.jpg #1 image of many icons in a long strip
+        url: clinicIconResized.png #1 image of many icons in a long strip
         filtering: mipmap #cuts out images at specified positions
         sprites:  # define sprite's: [x origin, y origin, width, height]. Default unit is px.
             clinic: [0, 0, 32, 32]
@@ -61,7 +61,7 @@ layers:
                 interactive: true
                 order: global.sdk_order_under_water_0
             lines:
-                interactive: false
+                interactive: false #If true, onClick and onHover events will trigger for this layer
                 order: global.sdk_order_under_roads_0
                 color: green
                 width: 3px
@@ -73,7 +73,7 @@ layers:
                 interactive: true
                 order: global.sdk_order_under_water_0
             lines:
-                interactive: false
+                interactive: false #If true, onClick and onHover events will trigger for this layer
                 order: global.sdk_order_under_roads_0
                 color: blue
                 width: 3px
@@ -93,7 +93,7 @@ layers:
                     #Stops at zoom x, 1D size px. 
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
                     #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
-                    size: [[6, 10px], [12, 20px], [20, 60px]]
+                    size: [[6, 15px], [12, 30px], [20, 60px]]
     _heatmapStatePopulation:
         enabled: true
         data: {source: heatmapStatePopulation}
@@ -103,27 +103,6 @@ layers:
                 order: global.sdk_order_under_water_0
                 color: |
                     function() {
-                         /* Supposed to go yellow-orange-red
-                        rgba(240,228,93,1) 0%, 
-                        rgba(245,245,12,1) 22%, 
-                        rgba(245,167,12,1) 43%, 
-                        rgba(240,125,24,1) 66%, 
-                        rgba(240,47,23,1) 85%, 
-                        rgba(231,56,39,1) 100%);
-                        */
-                        /*
-                        //Original Colour gradient ranges from gray (lowest power) to red (mid power) to brown (highest power)
-                        value >= 1267538 ? "rgba(127, 0, 0, 0.5)" :
-                        value >= 1140784.2 ? "rgba(167, 4, 3, 0.5)" :
-                        value >= 1014030.4 ? "rgba(200, 29, 19, 0.5)" :
-                        value >= 887276.6 ? "rgba(224, 69, 48, 0.5)" :
-                        value >= 760522.8 ? "rgba(241, 108, 73, 0.5)" :
-                        value >= 633769 ? "rgba(250, 142, 93, 0.5)" :
-                        value >= 507015.2 ? "rgba(253, 176, 122, 0.5)" :
-                        value >= 380261.4 ? "rgba(253, 202, 148, 0.5)" :
-                        value >= 253507.6 ? "rgba(253, 220, 175, 0.5)" :
-                        value >= 126753.8 ? "rgba(254, 235, 207, 0.5)" :
-                        */
                         var value = feature.population;
                         //Colour gradient starts with largest value then moves downwards!
                         var color = value >= 5572886 ? "rgba(231,56,39,1)" :

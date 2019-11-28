@@ -46,6 +46,7 @@ var layer = Tangram.leafletLayer({
     events: {
         //Adds listener to Tangram layer. On trigger, it runs function showPopup()
         //2 possibilities: 'click' and 'hover'. Only one popup displays at a time
+        hover: onHover,
         click: onClick
     }
 });
@@ -58,10 +59,11 @@ layer.addTo(map);
  */
 map.setView([4.354682, 109.308983], 6);
 
-// Feature selection
+//Tooltips display info where a click is made. 
+//While a popup looks like a bubble with a tail, a tooltip is square with a short tail
 var tooltip = L.tooltip();
- layer.bindTooltip(tooltip);
- map.on('zoom', function(){ layer.closeTooltip() }); // close tooltip when zooming
+layer.bindTooltip(tooltip);
+map.on('zoom', function(){ layer.closeTooltip() }); // close tooltip when zooming
 /**
  * Adds a comma for every 3 numbers in a number string
  * Output returned as a string
@@ -70,6 +72,33 @@ var tooltip = L.tooltip();
 function formatNumber(x) {
     //regular expression used to format solar power output 
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function onHover (selection) {
+    //selection = what's underneath the cursor. 'feature' refers to roads, markers, landmarks
+    var feature = selection.feature;
+    //This determines what happens onHover
+    if (feature) {
+        if (selection.changed) {
+            var info;
+            
+            //'Object.keys(feature.properties).length' must subtract 1. HERE spaces always adds
+            //its own which we don't need. Yeesh!
+            var name = feature.properties.name || feature.properties.kind ||
+                ((Object.keys(feature.properties).length-1)+' available properties');
+            name = '<b>'+name+'</b>';
+            name += '<br>(click for details)';
+            name = '<span class="labelInner">' + name + '</span>';
+            info = name;
+
+            if (info) {
+                tooltip.setContent(info);
+            }
+        }
+        layer.openTooltip(selection.leaflet_event.latlng);
+    }
+    else { //This closes the tooltip offHover
+        layer.closeTooltip();
+    }
 }
 function onClick(selection) {
     if (mode === 'notFeatureCount') {
@@ -81,19 +110,9 @@ function onClick(selection) {
             var info = getFeaturePropsHTML(feature);
             tooltip.setContent(info);
             layer.openTooltip(selection.leaflet_event.latlng);
-        
-            /** 
-            //
-            popup
-                .setLatLng(latlng)
-                .setContent('<p><strong>Name:</strong> ' + name + '</p><p>Location: ' + location + 'Power output:'+ formatNumber(power) + 'kW'</p>')
-                .openOn(map);
-            */
-        
         } else {
             //Does what it says: If a click is made outside of the heatmap area, 
-            //the popup is closed
-            //map.closePopup();
+            //the tooltip is closed
             layer.closeTooltip();
         }
     }
@@ -154,6 +173,7 @@ function toggle(layerName) {
     //document.getElementById(layerName).className = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
     layer.scene.updateConfig();
 }
+//Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
 function onlyOneHeatmap(checkbox) {
     var checkboxes = document.getElementsByName('checkHeatmap')
     checkboxes.forEach((item) => {
