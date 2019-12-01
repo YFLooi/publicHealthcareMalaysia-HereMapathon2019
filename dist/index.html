@@ -42,6 +42,10 @@
     </div>
     -->
     <div class="layerControls">
+      <div class="controlButtons">
+        <h3 style='text-align: center; width:100%;'>Tools</h3>
+        <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
+      </div>
       <div class="featuresCheckboxes">
         <h3 style='text-align: center; width:100%;'>Features</h3>
         <input id="stateBorders" type="checkbox" name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
@@ -50,19 +54,40 @@
       </div>
       <div class="heatmapCheckboxes">
         <h3 style='text-align: center; width:100%;'>Heatmaps</h3>
-        <input type="checkbox" checked  name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapStatePopulation');">&nbsp;&nbsp;<span>Population</span><br/>
+        <input type="checkbox" checked  name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapStatePopulation');">&nbsp;&nbsp;<span>State population</span><br/>
+        <input type="checkbox" checked  name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapDistrictPopulation');">&nbsp;&nbsp;<span>District population</span><br/>
         <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
       </div>
       <div class="controlButtons">
-        <h3 style='text-align: center; width:100%;'>Tools</h3>
-        <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
+          <h3 style='text-align: center; width:100%;'>WHO index components</h3>
+          <input type="checkbox" checked  name="whoIndex">&nbsp;&nbsp;<span>Population</span><br/>
+          <input type="checkbox" name="whoIndex" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
       </div>
     </div>  
+    <!--
     <div class='statistics'>
         <h1>Malaysia vs the WHO</h1>
         <div>...Insert progress bars here...</div>
     </div>
+    -->
 
+    <div>Footnotes</div>
+    <div> 
+      WHO overall composite index composed of 5 components. 
+      Health level 0.25 Longevity based on average lifespan of males and females 
+      Health Distribution 0.25  How accessible and widespread. Based on number of doctors with assumption they are distbuted where needed
+      Responsiveness level 0.125 Quality and environment of treatment for patients
+      Responsiveness distribution 0.125 Population expectation of standard of healthcare and ability to access health system
+      Fairness in financing 0.25 Difference in cost of same treatment between patients of different income level
+
+      Benchmark for calculating health level and health distribution: Japan
+      Health level 85.3 years
+      Health distribution 20.63 doctors per 10,000 people  
+      Assume maximum due to relatively developed status of Malaysia:
+      Responsiveness level 0.125
+      Responsiveness distribution 0.125 
+      Fairness in financing 0.25
+    </div>
     <div>Based on this tutorial: <a href='https://developer.here.com/tutorials/green-amsterdam/'>Green-Amsterdam by HERE maps</a></div>
     
     <!--

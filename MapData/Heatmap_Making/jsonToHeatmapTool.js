@@ -2,10 +2,12 @@ const fs = require('fs');
 const turf = require('@turf/turf');
 
 //File has geometry.type = Polygon
-const POLYGON_FILE = './Malaysia_AllStateBorders.json';
+//const POLYGON_FILE = './clean_Malaysia_AllStateBorders.json';
+const POLYGON_FILE = './clean_Malaysia_AllDistrictBorders.json';
+
 //File has geometry.type = Point
-const POINT_FILE = './populationByState_Malaysia.geojson';
-const OUT_FILE = './heatmap_statePopulation.json';
+const POINT_FILE = './populationByDistrictNationwide_Malaysia.geojson';
+const OUT_FILE = './heatmap_districtPopulation.json';
 
 var polygons = JSON.parse(fs.readFileSync(POLYGON_FILE, {encoding: 'utf8'}));
 var pointsLocations = JSON.parse(fs.readFileSync(POINT_FILE, {encoding: 'utf8'}));

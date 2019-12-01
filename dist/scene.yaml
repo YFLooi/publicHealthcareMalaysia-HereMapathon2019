@@ -46,10 +46,12 @@ styles:
         blend_order: 1
 textures:
     icons: 
-        url: clinicIconResized.png #1 image of many icons in a long strip
+        url: logoStrip.png #1 image of many icons in a long strip
         filtering: mipmap #cuts out images at specified positions
         sprites:  # define sprite's: [x origin, y origin, width, height]. Default unit is px.
             clinic: [0, 0, 32, 32]
+            hospital: [0, 32, 32, 32]
+            specialist: [0, 64, 32, 32]
             
 
 layers:
