@@ -43,25 +43,33 @@
     -->
     <div class="layerControls">
       <div class="controlButtons">
-        <h3 style='text-align: center; width:100%;'>Tools</h3>
+        <h3 style='width:100%;'>Tools</h3>
         <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
       </div>
       <div class="featuresCheckboxes">
-        <h3 style='text-align: center; width:100%;'>Features</h3>
-        <input id="stateBorders" type="checkbox" name="checkFeature" onclick="toggle('stateBorders')">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
-        <input id="districtBorders" type="checkbox" name="checkFeature" onclick="toggle('districtBorders')">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
-        <input id="publicClinicLocations" type="checkbox" checked name="checkFeature" onclick="toggle('publicClinicLocations')">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
+        <h3 style='width:100%;'>Features</h3>
+        <!--autocomplete="off" to prevent being stuck on check=true after refresh, which can
+        only be cleared by revisiting site-->
+        <input id="publicClinicLocations" type="checkbox" name="checkFeature" onclick="toggle('publicClinicLocations')" autocomplete="off" checked="true">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
+        <input id="nonSpecialistPublicHospitalLocations" type="checkbox" name="checkFeature" onclick="toggle('nonSpecialistPublicHospitalLocations')" autocomplete="off">&nbsp;&nbsp;<label for="nonSpecialistPublicHospitalLocations">Non-specialist public hospitals</label><br/>
+        <input id="specialistPublicHospitalLocations" type="checkbox" name="checkFeature" onclick="toggle('specialistPublicHospitalLocations')" autocomplete="off">&nbsp;&nbsp;<label for="specialistPublicHospitalLocations">Specialist public hospitals</label><br/>
+        <input id="districtBorders" type="checkbox" name="checkFeature" onclick="toggle('districtBorders')" autocomplete="off">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
+        <input id="stateBorders" type="checkbox" name="checkFeature" onclick="toggle('stateBorders')" autocomplete="off">&nbsp;&nbsp;<label for="stateBorders">State borders</label><br/>
       </div>
       <div class="heatmapCheckboxes">
-        <h3 style='text-align: center; width:100%;'>Heatmaps</h3>
-        <input type="checkbox" checked  name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapStatePopulation');">&nbsp;&nbsp;<span>State population</span><br/>
-        <input type="checkbox" checked  name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapDistrictPopulation');">&nbsp;&nbsp;<span>District population</span><br/>
-        <input type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
-      </div>
-      <div class="controlButtons">
+        <h3 style='width:100%;'>Heatmaps</h3>
+        <h5>Population</h5>
+          <input id="statePopulation" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapStatePopulation');" autocomplete="off">&nbsp;&nbsp;<label for="statePopulation">State population</label><br/>
+          <input id="districtPopulation" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapDistrictPopulation');" autocomplete="off" checked="true">&nbsp;&nbsp;<label for="districtPopulation">District population</label><br/>
+        <h5>WHO indices</h5>
+          <!--
           <h3 style='text-align: center; width:100%;'>WHO index components</h3>
-          <input type="checkbox" checked  name="whoIndex">&nbsp;&nbsp;<span>Population</span><br/>
+          <input type="checkbox" name="whoIndex">&nbsp;&nbsp;<span>Population</span><br/>
           <input type="checkbox" name="whoIndex" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
+          -->
+        <h5>Disease</h5>
+        <h5>Demographics</h5>
+        <input id="birthsPer10kPeople" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapBirths');" autocomplete="off">&nbsp;&nbsp;<label for="birthsPer10kPeople">Births per 10,000 people</label><br/>
       </div>
     </div>  
     <!--

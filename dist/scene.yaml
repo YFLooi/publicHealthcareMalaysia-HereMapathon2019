@@ -29,6 +29,20 @@ sources:
             access_token: ANOkxlf9QMWB72jUxUuT7AA
             clip: true
         type: GeoJSON
+    nonSpecialistPublicHospitalLocations:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/kWD0C5yR/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    specialistPublicHospitalLocations:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/fFv6HXwU/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
     heatmapStatePopulation:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/ccooUvui/tile/web/{z}_{x}_{y}
@@ -36,7 +50,55 @@ sources:
             access_token: ANOkxlf9QMWB72jUxUuT7AA
             clip: true
         type: GeoJSON
-    
+    heatmapDistrictPopulation:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/5GCJtvcm/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    heatmapBirths:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/b9LAgFk9/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    heatmapClinics:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/RZqh7uMM/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    heatmapDisease:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/xiPWAeQf/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    heatmapDoctors:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/WK5SmHwl/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    heatmapHospitals:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/d6rYHUHe/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
+    heatmapWHOIndices:
+        #Tiled endpoint to the data source on HERE xyz
+        url: https://xyz.api.here.com/hub/spaces/O5Le1m7f/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            clip: true
+        type: GeoJSON
 
 # Styles the polygons of the chloropleth
 styles:
@@ -80,7 +142,6 @@ layers:
                 color: blue
                 width: 3px
     _publicClinicLocations:
-        #Eyyy, replaced with icons!
         data: {source: publicClinicLocations}
         enabled: true
         _all:
@@ -96,8 +157,40 @@ layers:
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
                     #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
                     size: [[6, 15px], [12, 30px], [20, 60px]]
+    _nonSpecialistPublicHospitalLocations:
+        data: {source: nonSpecialistPublicHospitalLocations}
+        enabled: false
+        _all:
+            draw:
+                points:
+                    collide: false #MUST to prevent nearby features from being burried!
+                    placement: spaced
+                    placement_spacing: [[17, 70px], [20, 175px]]
+                    interactive: true #Must for popups to occur
+                    texture: icons
+                    sprite: hospital
+                    #Stops at zoom x, 1D size px. 
+                    #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
+                    #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
+                    size: [[6, 18px], [12, 33px], [20, 63px]]
+    _specialistPublicHospitalLocations:
+        data: {source: specialistPublicHospitalLocations}
+        enabled: false
+        _all:
+            draw:
+                points:
+                    collide: false #MUST to prevent nearby features from being burried!
+                    placement: spaced
+                    placement_spacing: [[17, 70px], [20, 175px]]
+                    interactive: true #Must for popups to occur
+                    texture: icons
+                    sprite: specialist
+                    #Stops at zoom x, 1D size px. 
+                    #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
+                    #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
+                    size: [[6, 18px], [12, 33px], [20, 63px]]
     _heatmapStatePopulation:
-        enabled: true
+        enabled: false
         data: {source: heatmapStatePopulation}
         draw:
             polygons:
@@ -119,8 +212,58 @@ layers:
                 #Draws underlying state borders
                 interactive: true
                 order: global.sdk_order_under_roads_0
-                color: black
-                width: 3px
+                color: green
+                width: 2px
+    _heatmapDistrictPopulation:
+        enabled: true
+        data: {source: heatmapDistrictPopulation}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.population;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 1000000 ? "rgba(231,56,39,1)" :
+                                    value >= 443336 ? "rgba(240,47,23,1)" :
+                                    value >= 221668 ? "rgba(240,125,24,1)" :
+                                    value >= 110834 ? "rgba(245,167,12,1)" :
+                                    value <= 55417 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: blue
+                width: 2px
+    _heatmapBirths:
+        enabled: false
+        data: {source: heatmapBirths}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Births_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 812 ? "rgba(231,56,39,1)" :
+                                    value >= 406 ? "rgba(240,47,23,1)" :
+                                    value >= 203 ? "rgba(240,125,24,1)" :
+                                    value >= 101 ? "rgba(245,167,12,1)" :
+                                    value <= 50 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: blue
+                width: 2px
     
 
 
