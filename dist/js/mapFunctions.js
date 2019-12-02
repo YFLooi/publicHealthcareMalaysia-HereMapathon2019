@@ -128,7 +128,6 @@ function getFeaturePropsHTML (feature) {
         //Only adds feature.properties that are not in props, to the end of props array
         //'@ns:com:here:xyz' is an annoying property that HERE xyz adds. Removed by the conditional added
         .forEach(function(p) { 
-            console.log(p)
             if (props.indexOf(p) === -1 && p!== '@ns:com:here:xyz') {
                 props.push(p);
             }
@@ -136,12 +135,16 @@ function getFeaturePropsHTML (feature) {
 
     var info = '<div class="featureTable">';
     props.forEach(function(p) {
-        if (feature.properties[p] && p!=='population') {
+        //Exclusions '!==' in 1st if statement to allow custom mods
+        if (feature.properties[p] && p!=='population' && p!=='Percent_Dengue_Mortality_Rate') {
             info += '<div class="featureRow"><div class="featureCell"><b>' + p + '</b></div>' +
                 '<div class="featureCell">' + feature.properties[p] + '</div></div>';
-        } else if (feature.properties[p] && p=='population') { //Ensures population number has a comma for every 3 numbers
+        } else if (feature.properties[p] && p==='population') { //Ensures population number has a comma for every 3 numbers
             info += '<div class="featureRow"><div class="featureCell"><b>' + p + '</b></div>' +
                 '<div class="featureCell">' + formatNumber(feature.properties[p]) + '</div></div>';
+        } else if (feature.properties[p] && p=== 'Percent_Dengue_Mortality_Rate') { //Adds % symbol at end of mortality figure
+            info += '<div class="featureRow"><div class="featureCell"><b>' + p + '</b></div>' +
+                '<div class="featureCell">' + feature.properties[p] + '% </div></div>';
         }
     });
 
@@ -170,13 +173,22 @@ function getFeaturePropsHTML (feature) {
  */
 function toggle(layerName) {
     layer.scene.config.layers["_" + layerName].enabled = !layer.scene.config.layers["_" + layerName].enabled;
-    //document.getElementById(layerName).className = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
+    //document.getElementById(layerName).status = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
+    
     layer.scene.updateConfig();
 }
 //Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
 function onlyOneHeatmap(checkbox) {
     var checkboxes = document.getElementsByName('checkHeatmap')
     checkboxes.forEach((item) => {
-        if (item !== checkbox) item.checked = false
+        if (item !== checkbox && item.checked === true) {
+            //Removes check mark
+            item.checked = false
+
+            //Runs toggle() to set _layer.enabled to false
+            //id of each checkbox matches its _layer name in scene.yaml
+            let itemId = item.id
+            toggle(itemId);
+        }
     })
 }

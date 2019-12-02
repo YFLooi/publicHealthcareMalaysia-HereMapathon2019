@@ -262,8 +262,506 @@ layers:
                 #Draws underlying state borders
                 interactive: false
                 order: global.sdk_order_under_roads_0
-                color: blue
+                color: green
+                width: 2px
+    _heatmapPopulationServedPerPublicClinic:
+        enabled: false
+        data: {source: heatmapClinics}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Population_Served_Per_Public_Clinic;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 207241 ? "rgba(231,56,39,1)" :
+                                    value >= 103620 ? "rgba(240,47,23,1)" :
+                                    value >= 51810 ? "rgba(240,125,24,1)" :
+                                    value >= 25905 ? "rgba(245,167,12,1)" :
+                                    value <= 12953 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapPopulationServedPerPrivateClinic:
+        enabled: false
+        data: {source: heatmapClinics}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Population_Served_Per_Private_Clinic;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 38049 ? "rgba(231,56,39,1)" :
+                                    value >= 19025 ? "rgba(240,47,23,1)" :
+                                    value >= 9512 ? "rgba(240,125,24,1)" :
+                                    value >= 4756 ? "rgba(245,167,12,1)" :
+                                    value <= 2378 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapPopulationServedByAllClinics:
+        enabled: false
+        data: {source: heatmapClinics}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Population_Served_By_All_Clinics;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 27832 ? "rgba(231,56,39,1)" :
+                                    value >= 13916 ? "rgba(240,47,23,1)" :
+                                    value >= 6958 ? "rgba(240,125,24,1)" :
+                                    value >= 3479 ? "rgba(245,167,12,1)" :
+                                    value <= 1739 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapHandFootMouthDisease:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Cases_Of_Hand_Foot_Mouth_Disease;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 7728 ? "rgba(231,56,39,1)" :
+                                    value >= 3864 ? "rgba(240,47,23,1)" :
+                                    value >= 1932 ? "rgba(240,125,24,1)" :
+                                    value >= 966 ? "rgba(245,167,12,1)" :
+                                    value <= 483 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapAIDS:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Cases_Of_AIDS;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 327 ? "rgba(231,56,39,1)" :
+                                    value >= 163 ? "rgba(240,47,23,1)" :
+                                    value >= 82 ? "rgba(240,125,24,1)" :
+                                    value >= 41 ? "rgba(245,167,12,1)" :
+                                    value <= 20 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapHIV:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Cases_Of_HIV;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 885 ? "rgba(231,56,39,1)" :
+                                    value >= 443 ? "rgba(240,47,23,1)" :
+                                    value >= 221 ? "rgba(240,125,24,1)" :
+                                    value >= 111 ? "rgba(245,167,12,1)" :
+                                    value <= 55 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapTB:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Cases_Of_Tuberculosis;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 6879 ? "rgba(231,56,39,1)" :
+                                    value >= 3439 ? "rgba(240,47,23,1)" :
+                                    value >= 1720 ? "rgba(240,125,24,1)" :
+                                    value >= 860 ? "rgba(245,167,12,1)" :
+                                    value <= 430 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapMalaria:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Cases_Of_Malaria;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 1031 ? "rgba(231,56,39,1)" :
+                                    value >= 515 ? "rgba(240,47,23,1)" :
+                                    value >= 258 ? "rgba(240,125,24,1)" :
+                                    value >= 129 ? "rgba(245,167,12,1)" :
+                                    value <= 64 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDengue:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Cases_Of_Dengue;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 22556 ? "rgba(231,56,39,1)" :
+                                    value >= 11278 ? "rgba(240,47,23,1)" :
+                                    value >= 5639 ? "rgba(240,125,24,1)" :
+                                    value >= 2820 ? "rgba(245,167,12,1)" :
+                                    value <= 1410 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDengueDeaths:
+        enabled: false
+        data: {source: heatmapDisease}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Deaths_By_Dengue;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 49 ? "rgba(231,56,39,1)" :
+                                    value >= 24 ? "rgba(240,47,23,1)" :
+                                    value >= 12 ? "rgba(240,125,24,1)" :
+                                    value >= 6 ? "rgba(245,167,12,1)" :
+                                    value <= 3 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDoctorsPublicHospitals:
+        enabled: false
+        data: {source: heatmapDoctors}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Doctors_In_Public_Hospitals_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 42.7 ? "rgba(231,56,39,1)" :
+                                    value >= 21.4 ? "rgba(240,47,23,1)" :
+                                    value >= 10.7 ? "rgba(240,125,24,1)" :
+                                    value >= 5.3 ? "rgba(245,167,12,1)" :
+                                    value <= 2.7 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDoctorsPrivateHospitals:
+        enabled: false
+        data: {source: heatmapDoctors}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Doctors_In_Private_Hospitals_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 15.7 ? "rgba(231,56,39,1)" :
+                                    value >= 7.8 ? "rgba(240,47,23,1)" :
+                                    value >= 3.9 ? "rgba(240,125,24,1)" :
+                                    value >= 2.0 ? "rgba(245,167,12,1)" :
+                                    value <= 1.0 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDoctorsAllHospitals:
+        enabled: false
+        data: {source: heatmapDoctors}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Doctors_In_All_Hospitals_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 58.5 ? "rgba(231,56,39,1)" :
+                                    value >= 29.2 ? "rgba(240,47,23,1)" :
+                                    value >= 14.6 ? "rgba(240,125,24,1)" :
+                                    value >= 7.3 ? "rgba(245,167,12,1)" :
+                                    value <= 3.7 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDoctorsAllClinics:
+        enabled: false
+        data: {source: heatmapDoctors}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Doctors_In_Clinics_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 7.1 ? "rgba(231,56,39,1)" :
+                                    value >= 3.5 ? "rgba(240,47,23,1)" :
+                                    value >= 1.8 ? "rgba(240,125,24,1)" :
+                                    value >= 0.9 ? "rgba(245,167,12,1)" :
+                                    value <= 0.4 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapDoctorsTotal:
+        enabled: false
+        data: {source: heatmapDoctors}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Total_Doctors_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 65.5 ? "rgba(231,56,39,1)" :
+                                    value >= 32.8 ? "rgba(240,47,23,1)" :
+                                    value >= 16.4 ? "rgba(240,125,24,1)" :
+                                    value >= 8.2 ? "rgba(245,167,12,1)" :
+                                    value <= 4.1 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapPublicHospitals:
+        enabled: false
+        data: {source: heatmapHospitals}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Population_Served_Per_Public_Hospital;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 837517 ? "rgba(231,56,39,1)" :
+                                    value >= 418758 ? "rgba(240,47,23,1)" :
+                                    value >= 209379 ? "rgba(240,125,24,1)" :
+                                    value >= 104690 ? "rgba(245,167,12,1)" :
+                                    value <= 52345 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapPrivateHospitals:
+        enabled: false
+        data: {source: heatmapHospitals}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Population_Served_Per_Private_Hospital;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 1285935 ? "rgba(231,56,39,1)" :
+                                    value >= 642968 ? "rgba(240,47,23,1)" :
+                                    value >= 321484 ? "rgba(240,125,24,1)" :
+                                    value >= 160742 ? "rgba(245,167,12,1)" :
+                                    value <= 80371 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapAllHospitals:
+        enabled: false
+        data: {source: heatmapHospitals}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Population_Served_By_All_Hospitals;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 447565 ? "rgba(231,56,39,1)" :
+                                    value >= 223782 ? "rgba(240,47,23,1)" :
+                                    value >= 111891 ? "rgba(240,125,24,1)" :
+                                    value >= 55946 ? "rgba(245,167,12,1)" :
+                                    value <= 27973 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapHospitalBeds:
+        enabled: false
+        data: {source: heatmapHospitals}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Beds_In_Public_Hospitals_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 69 ? "rgba(231,56,39,1)" :
+                                    value >= 35 ? "rgba(240,47,23,1)" :
+                                    value >= 17 ? "rgba(240,125,24,1)" :
+                                    value >= 9 ? "rgba(245,167,12,1)" :
+                                    value <= 4 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapNurses:
+        enabled: false
+        data: {source: heatmapHospitals}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.Nurses_Per_10000_People;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value >= 82 ? "rgba(231,56,39,1)" :
+                                    value >= 41 ? "rgba(240,47,23,1)" :
+                                    value >= 21 ? "rgba(240,125,24,1)" :
+                                    value >= 10 ? "rgba(245,167,12,1)" :
+                                    value <= 5 ? "rgba(240,228,93,1)" :
+                                    "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
                 width: 2px
     
-
-

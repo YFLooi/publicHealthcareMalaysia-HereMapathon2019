@@ -44,13 +44,13 @@
     <div class="layerControls">
       <div class="controlButtons">
         <h3 style='width:100%;'>Tools</h3>
-        <button type='button' class='btn btn-primary' onclick="countTrees()">Count features</button>
+        <button type='button' class='btn btn-primary' onclick="countTrees()">Count clinics</button>
       </div>
       <div class="featuresCheckboxes">
         <h3 style='width:100%;'>Features</h3>
         <!--autocomplete="off" to prevent being stuck on check=true after refresh, which can
         only be cleared by revisiting site-->
-        <input id="publicClinicLocations" type="checkbox" name="checkFeature" onclick="toggle('publicClinicLocations')" autocomplete="off" checked="true">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
+        <input id="publicClinicLocations" checked="true" type="checkbox" name="checkFeature" onclick="toggle('publicClinicLocations')" autocomplete="off">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
         <input id="nonSpecialistPublicHospitalLocations" type="checkbox" name="checkFeature" onclick="toggle('nonSpecialistPublicHospitalLocations')" autocomplete="off">&nbsp;&nbsp;<label for="nonSpecialistPublicHospitalLocations">Non-specialist public hospitals</label><br/>
         <input id="specialistPublicHospitalLocations" type="checkbox" name="checkFeature" onclick="toggle('specialistPublicHospitalLocations')" autocomplete="off">&nbsp;&nbsp;<label for="specialistPublicHospitalLocations">Specialist public hospitals</label><br/>
         <input id="districtBorders" type="checkbox" name="checkFeature" onclick="toggle('districtBorders')" autocomplete="off">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
@@ -59,8 +59,8 @@
       <div class="heatmapCheckboxes">
         <h3 style='width:100%;'>Heatmaps</h3>
         <h5>Population</h5>
-          <input id="statePopulation" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapStatePopulation');" autocomplete="off">&nbsp;&nbsp;<label for="statePopulation">State population</label><br/>
-          <input id="districtPopulation" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapDistrictPopulation');" autocomplete="off" checked="true">&nbsp;&nbsp;<label for="districtPopulation">District population</label><br/>
+          <input id="heatmapStatePopulation" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapStatePopulation');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapStatePopulation">State population</label><br/>
+          <input id="heatmapDistrictPopulation" checked="true" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapDistrictPopulation');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDistrictPopulation">District population</label><br/>
         <h5>WHO indices</h5>
           <!--
           <h3 style='text-align: center; width:100%;'>WHO index components</h3>
@@ -68,8 +68,26 @@
           <input type="checkbox" name="whoIndex" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
           -->
         <h5>Disease</h5>
+          <input id="heatmapHandFootMouthDisease" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHandFootMouthDisease');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHandFootMouthDisease">Cases of hand-foot-mouth disease</label><br/>
+          <input id="heatmapAIDS" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapAIDS');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapAIDS">Cases of AIDS</label><br/>
+          <input id="heatmapHIV" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHIV');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHIV">Cases of HIV</label><br/>
+          <input id="heatmapTB" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapTB');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapTB">Cases of tuberculosis (TB)</label><br/>
+          <input id="heatmapMalaria" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapMalaria');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapMalaria">Cases of malaria</label><br/>
+          <input id="heatmapDengue" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDengue');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDengue">Cases of dengue</label><br/>
+          <input id="heatmapDengueDeaths" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDengueDeaths');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDengueDeaths">Deaths by dengue</label><br/>
         <h5>Demographics</h5>
-        <input id="birthsPer10kPeople" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapBirths');" autocomplete="off">&nbsp;&nbsp;<label for="birthsPer10kPeople">Births per 10,000 people</label><br/>
+          <input id="heatmapBirths" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapBirths');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapBirths">Births per 10,000 people</label><br/>
+        <h5>Infrastructure</h5>
+          <input id="heatmapPopulationServedPerPublicClinic" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedPerPublicClinic');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPopulationServedPerPublicClinic">Population served per public clinic</label><br/>
+          <input id="heatmapPopulationServedPerPrivateClinic" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedPerPrivateClinic');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPopulationServedPerPrivateClinic">Population served per private clinic</label><br/>
+          <input id="heatmapPopulationServedByAllClinics" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedByAllClinics');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPopulationServedByAllClinics">Population served by all clinics</label><br/>
+        <h5>Medical staff</h5>
+          <input id="heatmapDoctorsPublicHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsPublicHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsPublicHospitals">Public hospital doctors per 10,000 people</label><br/>
+          <input id="heatmapDoctorsPrivateHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsPrivateHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsPrivateHospitals">Private hospital doctors per 10,000 people</label><br/>
+          <input id="heatmapDoctorsAllHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsAllHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsAllHospitals">All hospital doctors per 10,000 people</label><br/>
+          <input id="heatmapDoctorsAllClinics" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsAllClinics');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsAllClinics">All clinic doctors per 10,000 people</label><br/>
+          <input id="heatmapDoctorsTotal" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsTotal');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsTotal">All available doctors per 10,000 people</label><br/>
+        
       </div>
     </div>  
     <!--
@@ -82,19 +100,35 @@
     <div>Footnotes</div>
     <div> 
       WHO overall composite index composed of 5 components. 
-      Health level 0.25 Longevity based on average lifespan of males and females 
-      Health Distribution 0.25  How accessible and widespread. Based on number of doctors with assumption they are distbuted where needed
-      Responsiveness level 0.125 Quality and environment of treatment for patients
-      Responsiveness distribution 0.125 Population expectation of standard of healthcare and ability to access health system
-      Fairness in financing 0.25 Difference in cost of same treatment between patients of different income level
+      <tbody>
+        <tr>
+          Health level 0.25 Longevity based on average lifespan of males and females 
+        </tr>
+        <tr>
+          Health Distribution 0.25  How accessible and widespread. Based on number of doctors with assumption they are distbuted where needed
+        </tr>
+        <tr>
+          Responsiveness level 0.125 Quality and environment of treatment for patients
+        </tr>
+        <tr>
+            Responsiveness distribution 0.125 Population expectation of standard of healthcare and ability to access health system
+        </tr>
+        <tr>
+          Fairness in financing 0.25 Difference in cost of same treatment between patients of different income level
+        </tr>
+      </tbody>
 
-      Benchmark for calculating health level and health distribution: Japan
-      Health level 85.3 years
-      Health distribution 20.63 doctors per 10,000 people  
-      Assume maximum due to relatively developed status of Malaysia:
-      Responsiveness level 0.125
-      Responsiveness distribution 0.125 
-      Fairness in financing 0.25
+        <div>
+            Benchmark for calculating health level and health distribution: Japan<br/>
+            Health level 85.3 years<br/>
+            Health distribution 20.63 doctors per 10,000 people<br/>
+        </div>
+        <div>
+            Assume maximum due to relatively developed status of Malaysia:<br/>
+            Responsiveness level 0.125<br/>
+            Responsiveness distribution 0.125 <br/>
+            Fairness in financing 0.25<br/>
+        </div>
     </div>
     <div>Based on this tutorial: <a href='https://developer.here.com/tutorials/green-amsterdam/'>Green-Amsterdam by HERE maps</a></div>
     
