@@ -50,7 +50,7 @@
         <h3 style='width:100%;'>Features</h3>
         <!--autocomplete="off" to prevent being stuck on check=true after refresh, which can
         only be cleared by revisiting site-->
-        <input id="publicClinicLocations" checked="true" type="checkbox" name="checkFeature" onclick="toggle('publicClinicLocations')" autocomplete="off">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
+        <input id="publicClinicLocations" type="checkbox" name="checkFeature" onclick="toggle('publicClinicLocations')" autocomplete="off">&nbsp;&nbsp;<label for="publicClinicLocations">Public clinics</label><br/>
         <input id="nonSpecialistPublicHospitalLocations" type="checkbox" name="checkFeature" onclick="toggle('nonSpecialistPublicHospitalLocations')" autocomplete="off">&nbsp;&nbsp;<label for="nonSpecialistPublicHospitalLocations">Non-specialist public hospitals</label><br/>
         <input id="specialistPublicHospitalLocations" type="checkbox" name="checkFeature" onclick="toggle('specialistPublicHospitalLocations')" autocomplete="off">&nbsp;&nbsp;<label for="specialistPublicHospitalLocations">Specialist public hospitals</label><br/>
         <input id="districtBorders" type="checkbox" name="checkFeature" onclick="toggle('districtBorders')" autocomplete="off">&nbsp;&nbsp;<label for="districtBorders">District borders</label><br/>
@@ -62,11 +62,10 @@
           <input id="heatmapStatePopulation" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapStatePopulation');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapStatePopulation">State population</label><br/>
           <input id="heatmapDistrictPopulation" checked="true" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this);toggle('heatmapDistrictPopulation');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDistrictPopulation">District population</label><br/>
         <h5>WHO indices</h5>
-          <!--
-          <h3 style='text-align: center; width:100%;'>WHO index components</h3>
-          <input type="checkbox" name="whoIndex">&nbsp;&nbsp;<span>Population</span><br/>
-          <input type="checkbox" name="whoIndex" onclick="onlyOneHeatmap(this);toggle('dummy');">&nbsp;&nbsp;<span>Dummy</span><br/>
-          -->
+          <div>>1 means better than benchmark nation WHO index (Japan)</div>
+          <input id="heatmapWHOHealthDistribution" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapWHOHealthDistribution');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapWHOHealthDistribution">Health distribution</label><br/>
+          <input id="heatmapWHOHealthLevel" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapWHOHealthLevel');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapWHOHealthLevel">Health level</label><br/>
+          <input id="heatmapWHOHealthIndex" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapWHOHealthIndex');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapWHOHealthIndex">Overall health index</label><br/>
         <h5>Disease</h5>
           <input id="heatmapHandFootMouthDisease" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHandFootMouthDisease');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHandFootMouthDisease">Cases of hand-foot-mouth disease</label><br/>
           <input id="heatmapAIDS" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapAIDS');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapAIDS">Cases of AIDS</label><br/>
@@ -78,16 +77,21 @@
         <h5>Demographics</h5>
           <input id="heatmapBirths" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapBirths');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapBirths">Births per 10,000 people</label><br/>
         <h5>Infrastructure</h5>
+          <input id="heatmapHospitalBeds" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHospitalBeds');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHospitalBeds">Available public hospital beds per 10,000 people</label><br/>
+          <input id="heatmapPublicHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPublicHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPublicHospitals">Population served per public hospital</label><br/>
+          <input id="heatmapPrivateHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPrivateHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPrivateHospitals">Population served per private hospital</label><br/>
+          <input id="heatmapAllHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedPerPublicClinic');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapAllHospitals">Population served by all hospitals</label><br/>
           <input id="heatmapPopulationServedPerPublicClinic" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedPerPublicClinic');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPopulationServedPerPublicClinic">Population served per public clinic</label><br/>
           <input id="heatmapPopulationServedPerPrivateClinic" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedPerPrivateClinic');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPopulationServedPerPrivateClinic">Population served per private clinic</label><br/>
           <input id="heatmapPopulationServedByAllClinics" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapPopulationServedByAllClinics');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapPopulationServedByAllClinics">Population served by all clinics</label><br/>
         <h5>Medical staff</h5>
+          <input id="heatmapNurses" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapNurses');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapNurses">All nurses per 10,000 people</label><br/>
           <input id="heatmapDoctorsPublicHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsPublicHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsPublicHospitals">Public hospital doctors per 10,000 people</label><br/>
           <input id="heatmapDoctorsPrivateHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsPrivateHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsPrivateHospitals">Private hospital doctors per 10,000 people</label><br/>
           <input id="heatmapDoctorsAllHospitals" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsAllHospitals');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsAllHospitals">All hospital doctors per 10,000 people</label><br/>
           <input id="heatmapDoctorsAllClinics" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsAllClinics');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsAllClinics">All clinic doctors per 10,000 people</label><br/>
           <input id="heatmapDoctorsTotal" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapDoctorsTotal');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapDoctorsTotal">All available doctors per 10,000 people</label><br/>
-        
+
       </div>
     </div>  
     <!--
@@ -130,7 +134,6 @@
             Fairness in financing 0.25<br/>
         </div>
     </div>
-    <div>Based on this tutorial: <a href='https://developer.here.com/tutorials/green-amsterdam/'>Green-Amsterdam by HERE maps</a></div>
     
     <!--
     <iframe src="https://xyz.here.com/viewer/?project_id=df2b02ca-75cf-414e-957c-5ff9b6da04b9" frameborder="0" style='width: 100%; height: 500px;'></iframe>

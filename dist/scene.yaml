@@ -143,7 +143,7 @@ layers:
                 width: 3px
     _publicClinicLocations:
         data: {source: publicClinicLocations}
-        enabled: true
+        enabled: false
         _all:
             draw:
                 points:
@@ -756,6 +756,79 @@ layers:
                                     value >= 10 ? "rgba(245,167,12,1)" :
                                     value <= 5 ? "rgba(240,228,93,1)" :
                                     "rgba(245,245,12,1)";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapWHOHealthLevel  :
+        enabled: false
+        data: {source: heatmapWHOIndices}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.WHO_Index_Health_Level;
+                        //Colour gradient starts with largest value then moves downwards!
+                        //Works better with hex codes than rgba()
+                        var color = value > 1.0 ? "#1a9850" :
+                                    value > 0.75 ? "#fee08b" :
+                                    value > 0.5 ? "#fc8d59" : 
+                                    value > 0.01 ? "#d73027" : 
+                                    "#FFFFFF";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapWHOHealthDistribution  :
+        enabled: false
+        data: {source: heatmapWHOIndices}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.WHO_Index_Health_Distribution;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value > 1.0 ? "#1a9850" :
+                                    value > 0.75 ? "#fee08b" :
+                                    value > 0.5 ? "#fc8d59" : 
+                                    value > 0.01 ? "#d73027" :
+                                    "#FFFFFF";
+                        return color
+                    }
+            lines:
+                #Draws underlying state borders
+                interactive: false
+                order: global.sdk_order_under_roads_0
+                color: green
+                width: 2px
+    _heatmapWHOHealthIndex  :
+        enabled: false
+        data: {source: heatmapWHOIndices}
+        draw:
+            polygons:
+                interactive: true
+                order: global.sdk_order_under_water_0
+                color: |
+                    function() {
+                        var value = feature.WHO_Overall_Health_Index;
+                        //Colour gradient starts with largest value then moves downwards!
+                        var color = value > 1.0 ? "#1a9850" :
+                                    value > 0.75 ? "#fee08b" :
+                                    value > 0.5 ? "#fc8d59" : 
+                                    value > 0.01 ? "#d73027" :
+                                    "#FFFFFF";
                         return color
                     }
             lines:
