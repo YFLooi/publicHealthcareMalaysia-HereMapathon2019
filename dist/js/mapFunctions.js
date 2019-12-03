@@ -192,3 +192,14 @@ function onlyOneHeatmap(checkbox) {
         }
     })
 }
+function toggleLayerControlBox (command) {
+    if (command === 'showControlBox'){
+        document.getElementById('layerControlBox').style.display='block';
+        document.getElementById('hideControlBoxButton').style.display='block';
+        document.getElementById('showControlBoxButton').style.display='none';
+    } else if (command === 'hideControlBox'){
+        document.getElementById('layerControlBox').style.display='none';
+        document.getElementById('hideControlBoxButton').style.display='none';
+        document.getElementById('showControlBoxButton').style.display='block';
+    }
+}

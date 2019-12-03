@@ -6,7 +6,8 @@ body {
 }
 .mapContainer {
     display: block;
-    height:500px;
+    position: relative;
+    height: 600px;
     width: 100%;
     margin: 0 0 0 0;
     border: 0px;
@@ -16,12 +17,74 @@ body {
     height: 100%;
     width: 100%;
 }
+#showControlBoxButton {
+    position: absolute;
+    display: block;
+    z-index: 99999;
+    top: 10px;
+    right:10px; 
+}
+#hideControlBoxButton {
+    position: absolute; 
+    display: none;
+    right:10px; 
+    text-align: center; 
+    width: 70px; 
+    opacity: 0.5; 
+}
+#layerControlBox {
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    display: none;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 .layerControls {
-    border: 2px solid black;
-    padding: 0.5%;
+    background-color: #ffffff;
+    position: relative;
+    height: 90%;
+    width: 96%;
+    z-index: 99999;
+    border: 2px solid #ffffff;
+    margin: 2.5% auto;   
+}
+.layerControlsHeader {
+    width: 100%; 
+    height: 10%; 
+}
+.layerControlsBody {
+    width: 100%; 
+    height: 90%; 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content:space-evenly;
+    overflow-y: scroll;
+    padding: 0 5%;
 }
-  
+.heatmapCheckboxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dbaaaa;
+}
