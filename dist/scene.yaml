@@ -215,7 +215,7 @@ layers:
                 color: green
                 width: 2px
     _heatmapDistrictPopulation:
-        enabled: true
+        enabled: false
         data: {source: heatmapDistrictPopulation}
         draw:
             polygons:
@@ -340,7 +340,7 @@ layers:
                 color: green
                 width: 2px
     _heatmapHandFootMouthDisease:
-        enabled: false
+        enabled: true
         data: {source: heatmapDisease}
         draw:
             polygons:

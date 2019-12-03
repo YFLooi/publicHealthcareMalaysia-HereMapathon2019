@@ -1,15 +1,17 @@
 //Determines if popups to be shown or counter enabled
 var mode = 'notFeatureCount';
 //Determines which feature counter should count
-var spaceIDSelected = 'CnsQWqCa'
+var spaceIDSelected = [];
 
-//counts number of trees in bounding box
-function countTrees() {
-    //Removes counting box overlay on 2nd click of 'Count Trees' button
+//counts number of features in bounding box
+function countFeatures() {
+    //Removes counting box overlay on 2nd click of 'Count features' button
     if (mode === 'featureCount') {
         areaSelect.remove(); 
         mode = 'notFeatureCount';
-    } else { //Applies counting box overlay if mode !== trees
+        spaceIDSelected.splice(0, spaceIDSelected.length);
+
+    } else { //Applies counting box overlay if mode !== featureCount
         mode = 'featureCount';
         areaSelect = L.areaSelect({width:200, height:200}); // Need to make a new one each time for some reason
         areaSelect.addTo(map);
@@ -17,15 +19,26 @@ function countTrees() {
         function calcArea(bounds) {
             if (mode == 'featureCount') { // Prevent this from accidentally running in the other mode
                 map.spin(true);
+                var totalFeatures = 0;
                 var spaceID = spaceIDSelected; //Obtains count of coordinates in this data set within counting box!
                 var accessToken = 'ANOkxlf9QMWB72jUxUuT7AA';
-                var url = 'https://xyz.api.here.com/hub/spaces/' + spaceID + '/bbox?access_token=' + accessToken + '&west=' + bounds.getWest() + '&south=' + bounds.getSouth() + '&east=' + bounds.getEast() + '&north=' + bounds.getNorth();
+
+                for(let i=0; i<spaceID.length; i++){
+                    var url = 'https://xyz.api.here.com/hub/spaces/' + spaceID[i] + '/bbox?access_token=' + accessToken + '&west=' + bounds.getWest() + '&south=' + bounds.getSouth() + '&east=' + bounds.getEast() + '&north=' + bounds.getNorth();
                 
-                fetch(url).then((response) => response.json()).then(function(data) {
-                    var len = data.features.length;
-                    map.spin(false);
-                    L.popup().setLatLng(map.getCenter()).setContent(formatNumber(len) + ' features found').openOn(map);
-                });
+                    fetch(url).then((response) => response.json()).then(function(data) {
+                        var len = data.features.length;
+                        console.log(`length of data: ${len}`)
+                        totalFeatures = totalFeatures + parseFloat(len);
+                        console.log(`new totalFeatures: ${totalFeatures}`)
+                    });
+                }
+                
+                setTimeout(function(){
+                    map.spin(false); //Turns off the 'spinner' gif that pops up when the counter is counting
+                    console.log(`Final totalFeatures: ${totalFeatures}`)
+                    L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map);
+                },1000);
             }
         };
         //To call on one of the properties of L.class in leaflet-areaselect.js, follow this syntax:
@@ -175,6 +188,32 @@ function toggle(layerName) {
     layer.scene.config.layers["_" + layerName].enabled = !layer.scene.config.layers["_" + layerName].enabled;
     //document.getElementById(layerName).status = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
     
+    //Code below used for feature counter
+    //Obtains spaceId associated with layerName
+    let asscSpaceId = '';
+    if(layerName === 'publicClinicLocations'){
+        asscSpaceId = 'CnsQWqCa'
+    } else if(layerName === 'nonSpecialistPublicHospitalLocations'){
+        asscSpaceId = 'kWD0C5yR'
+    } else if(layerName === 'specialistPublicHospitalLocations'){
+        asscSpaceId = 'fFv6HXwU'
+    }
+
+    //Prevents the same spaceId from appearing twice in var spaceIdSelected
+    const duplicateIndexCheck = spaceIDSelected.findIndex(element => element === asscSpaceId);
+    console.log(duplicateIndexCheck);
+    console.log(spaceIDSelected)
+    //To work with feature counter later
+    if(layerName === 'publicClinicLocations' && duplicateIndexCheck === -1){
+        spaceIDSelected.push('CnsQWqCa');
+    } else if(layerName === 'nonSpecialistPublicHospitalLocations' && duplicateIndexCheck === -1){
+        spaceIDSelected.push('kWD0C5yR');
+    } else if(layerName === 'specialistPublicHospitalLocations' && duplicateIndexCheck === -1){
+        spaceIDSelected.push('fFv6HXwU');
+    } else if(duplicateIndexCheck !== -1){
+        spaceIDSelected.splice(duplicateIndexCheck,1);
+    }
+
     layer.scene.updateConfig();
 }
 //Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
