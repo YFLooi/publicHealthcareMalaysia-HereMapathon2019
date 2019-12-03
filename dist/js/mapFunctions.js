@@ -28,15 +28,12 @@ function countFeatures() {
                 
                     fetch(url).then((response) => response.json()).then(function(data) {
                         var len = data.features.length;
-                        console.log(`length of data: ${len}`)
                         totalFeatures = totalFeatures + parseFloat(len);
-                        console.log(`new totalFeatures: ${totalFeatures}`)
                     });
                 }
                 
                 setTimeout(function(){
                     map.spin(false); //Turns off the 'spinner' gif that pops up when the counter is counting
-                    console.log(`Final totalFeatures: ${totalFeatures}`)
                     L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map);
                 },1000);
             }
@@ -201,8 +198,6 @@ function toggle(layerName) {
 
     //Prevents the same spaceId from appearing twice in var spaceIdSelected
     const duplicateIndexCheck = spaceIDSelected.findIndex(element => element === asscSpaceId);
-    console.log(duplicateIndexCheck);
-    console.log(spaceIDSelected)
     //To work with feature counter later
     if(layerName === 'publicClinicLocations' && duplicateIndexCheck === -1){
         spaceIDSelected.push('CnsQWqCa');
