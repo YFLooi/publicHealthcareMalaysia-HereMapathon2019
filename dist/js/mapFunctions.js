@@ -9,8 +9,6 @@ function countFeatures() {
     if (mode === 'featureCount') {
         areaSelect.remove(); 
         mode = 'notFeatureCount';
-        spaceIDSelected.splice(0, spaceIDSelected.length);
-
     } else { //Applies counting box overlay if mode !== featureCount
         mode = 'featureCount';
         areaSelect = L.areaSelect({width:200, height:200}); // Need to make a new one each time for some reason
@@ -201,20 +199,19 @@ function toggle(layerName) {
     const duplicateIndexCheck = spaceIDSelected.findIndex(element => element === asscSpaceId);
     //Timeout needed for code above to run, otherwise features will be counted when they should not
     //Cannot make timeout too long, otherwise counter will count based on last-known spaceIDSelected
-    setTimeout(function(){
-        //To work with feature counter later
-        if(layerName === 'publicClinicLocations' && duplicateIndexCheck === -1){
-            spaceIDSelected.push('CnsQWqCa');
-        } else if(layerName === 'nonSpecialistPublicHospitalLocations' && duplicateIndexCheck === -1){
-            spaceIDSelected.push('kWD0C5yR');
-        } else if(layerName === 'specialistPublicHospitalLocations' && duplicateIndexCheck === -1){
-            spaceIDSelected.push('fFv6HXwU');
-        } else if(duplicateIndexCheck !== -1){
-            spaceIDSelected.splice(duplicateIndexCheck,1);
-        }
+   
+    //To work with feature counter later
+    if(layerName === 'publicClinicLocations' && duplicateIndexCheck === -1){
+        spaceIDSelected.push('CnsQWqCa');
+    } else if(layerName === 'nonSpecialistPublicHospitalLocations' && duplicateIndexCheck === -1){
+        spaceIDSelected.push('kWD0C5yR');
+    } else if(layerName === 'specialistPublicHospitalLocations' && duplicateIndexCheck === -1){
+        spaceIDSelected.push('fFv6HXwU');
+    } else if(duplicateIndexCheck !== -1){
+        spaceIDSelected.splice(duplicateIndexCheck,1);
+    }
 
-        layer.scene.updateConfig();
-    },100)
+    layer.scene.updateConfig();
 }
 //Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
 function onlyOneHeatmap(checkbox) {
