@@ -88,6 +88,9 @@ body {
     margin: 2.5px 0;
     border-radius: 25px;
 }
+.progressBar:hover {
+    border: 2px solid whitesmoke;
+}
 
 table {
     font-family: arial, sans-serif;

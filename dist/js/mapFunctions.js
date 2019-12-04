@@ -196,20 +196,25 @@ function toggle(layerName) {
         asscSpaceId = 'fFv6HXwU'
     }
 
+
     //Prevents the same spaceId from appearing twice in var spaceIdSelected
     const duplicateIndexCheck = spaceIDSelected.findIndex(element => element === asscSpaceId);
-    //To work with feature counter later
-    if(layerName === 'publicClinicLocations' && duplicateIndexCheck === -1){
-        spaceIDSelected.push('CnsQWqCa');
-    } else if(layerName === 'nonSpecialistPublicHospitalLocations' && duplicateIndexCheck === -1){
-        spaceIDSelected.push('kWD0C5yR');
-    } else if(layerName === 'specialistPublicHospitalLocations' && duplicateIndexCheck === -1){
-        spaceIDSelected.push('fFv6HXwU');
-    } else if(duplicateIndexCheck !== -1){
-        spaceIDSelected.splice(duplicateIndexCheck,1);
-    }
+    //Timeout needed for code above to run, otherwise features will be counted when they should not
+    //Cannot make timeout too long, otherwise counter will count based on last-known spaceIDSelected
+    setTimeout(function(){
+        //To work with feature counter later
+        if(layerName === 'publicClinicLocations' && duplicateIndexCheck === -1){
+            spaceIDSelected.push('CnsQWqCa');
+        } else if(layerName === 'nonSpecialistPublicHospitalLocations' && duplicateIndexCheck === -1){
+            spaceIDSelected.push('kWD0C5yR');
+        } else if(layerName === 'specialistPublicHospitalLocations' && duplicateIndexCheck === -1){
+            spaceIDSelected.push('fFv6HXwU');
+        } else if(duplicateIndexCheck !== -1){
+            spaceIDSelected.splice(duplicateIndexCheck,1);
+        }
 
-    layer.scene.updateConfig();
+        layer.scene.updateConfig();
+    },100)
 }
 //Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
 function onlyOneHeatmap(checkbox) {
