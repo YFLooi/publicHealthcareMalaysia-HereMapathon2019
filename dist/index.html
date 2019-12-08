@@ -24,11 +24,19 @@
     <script type='text/javascript' src='./js/leaflet-areaselect.js'></script>
     <script src="./js/spin.min.js"></script>
     <script src="./js/leaflet.spin.min.js"></script>
-   
+
+    <!--  For rendering isochrones: Targomo leaflet full build -->
+    <script src="https://releases.targomo.com/leaflet/latest-full.min.js"></script>
   </head>
   <body class='container'>
     <div style="width:100%; height: 60px; margin-top: 10px; margin-bottom: 10px; overflow-x: visible; background-image: url('./iconFiles/banner.PNG'); background-size: contain; background-repeat: no-repeat;"></div>    
-    <div class="mapContainer">
+    
+    <div>Test stuff
+      <a href="./isochroneEx.html">Isochrone test pg</a>
+      <button onclick="toggleIsochrone()">Render isochrone</button>
+    </div>
+    
+    <div id="mapContainer">
       <div id="map"></div>
       <button type='button' class='btn btn-primary' id="showControlBoxButton" onclick="toggleLayerControlBox('showControlBox')">
         <img src="./iconFiles/gear.png" style="width:20px; height:20px; padding-bottom: 3px;"/> Show controls

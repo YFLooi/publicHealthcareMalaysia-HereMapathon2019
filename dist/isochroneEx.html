@@ -1,0 +1,91 @@
+<!--
+source: https://targomo.com/developers/docs/javascript/code_example/leaflet_polygons/
+API key: RRSOIF28MZJD7PAD2F58207565238
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--  Include leaflet javascript and css -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" crossorigin="" type="text/javascript"></script>
+
+        <!--  Include targomo leaflet full build -->
+        <script src="https://releases.targomo.com/leaflet/latest-full.min.js"></script>
+        <style>
+            body,
+            html {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            #map {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--  where the map will live  -->
+        <div id="map"></div>
+        <script>
+            async function initMap() {
+                // create targomo client
+                const client = new tgm.TargomoClient('asia', 'RRSOIF28MZJD7PAD2F58207565238');
+                // define the basemap. Basemap styles can be Light, Dark
+                const tileLayer = new tgm.leaflet.TgmLeafletTileLayer(client, 'Light');
+                // Coordinates to center the map
+                const center = [3.157666, 101.711992];
+
+                // define the map
+                var map = L.map('map', {
+                    layers: [tileLayer],
+                    scrollWheelZoom: true //Does as it says: Sets zooming by mouse/scroll wheel
+                }).setView(center, 11);
+
+                // set the attribution
+                const attributionText = `<a href='https://www.openstreetmap.org/copyright' target='_blank'>&copy; OpenStreetMap contributors</a> <a href='http://openmaptiles.org/' target='_blank'>&copy; OpenMapTiles</a> <a href='https://targomo.com/developers/resources/attribution/' target='_blank'>&copy; Targomo</a>`
+                map.attributionControl.addAttribution(attributionText);
+
+                // polygons time rings. Time in seconds
+                //5 min: 300, 15 min: 900, 30min: 1800, 1hr: 3600
+                //My free tier limit: 0-1800 seconds, 3 travel times max
+                const travelTimes = [300, 900, 1800];
+
+                // you need to define some options for the polygon service
+                // travelType options: 'walk', 'bike', 'car' or 'transit'
+                const options = {
+                    travelType: 'car',
+                    travelEdgeWeights: travelTimes,
+                    maxEdgeWeight: 1800,
+                    edgeWeight: 'time',
+                    serializer: 'json'
+                };
+
+                // define the starting point
+                const sources = [{ id: 0, lat: center[0], lng: center[1] }];
+
+                // Add markers for the sources on the map.
+                sources.forEach(source => {
+                    L.marker([source.lat, source.lng]).addTo(map)
+                });
+
+                // define the polygon overlay
+                const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
+                polygonOverlayLayer.addTo(map);
+
+                // get the polygons
+                const polygons = await client.polygons.fetch(sources, options);
+                // calculate bounding box for polygons
+                const bounds = polygons.getMaxBounds();
+                // add polygons to overlay
+                polygonOverlayLayer.setData(polygons);
+                // zoom to the polygon bounds
+                map.fitBounds(new L.latLngBounds(bounds.northEast, bounds.southWest));
+            }
+
+            initMap();
+        </script>
+    </body>
+</html>

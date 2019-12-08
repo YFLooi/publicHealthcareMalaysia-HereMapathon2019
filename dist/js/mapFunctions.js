@@ -1,15 +1,47 @@
+//Generates map on page load. Runs automatically.
+var map = L.map('map', {boxZoom: false});
+L.control.scale().addTo(map); //Adds scale bar to map
+//Creates Tangram as a Leaflet layer
+var tangramLayer = Tangram.leafletLayer({
+    scene: 'scene.yaml',
+    attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>',
+    events: {
+        //Adds listener to Tangram layer. On trigger, it runs function showPopup()
+        //2 possibilities: 'click' and 'hover'. Only one popup displays at a time
+        hover: onMapHover,
+        click: onMapClick
+    }
+});
+tangramLayer.addTo(map);
+/** 
+ * Coordinates in [] are center point. 
+ * Number after ',' sets zoom level. Bigger number = Zoom in more
+ * Original in tut: [52.332548, 4.893920], 12
+ * For Malaysia: [4.354682, 109.308983], 6
+ */
+map.setView([4.354682, 109.308983], 6);
+//Tooltips display info where a click is made. 
+//While a popup looks like a bubble with a tail, a tooltip is square with a short tail
+var tooltip = L.tooltip();
+tangramLayer.bindTooltip(tooltip);
+map.on('zoom', function(){ tangramLayer.closeTooltip() }); // close tooltip when zooming
+
+
 //Determines if popups to be shown or counter enabled
-var mode = 'notFeatureCount';
+var mode = 'noToolEnabled';
 //Determines which feature counter should count
 var spaceIDSelected = [];
-
+// Popups. closeButton controlled by the little 'x' in the popup.
+var popup = L.popup({closeButton: false});
+//var featurecountLayerGroup = new L.LayerGroup();
 //counts number of features in bounding box
 function countFeatures() {
     //Removes counting box overlay on 2nd click of 'Count features' button
     if (mode === 'featureCount') {
+        featurecountLayerGroup.isOpen(); //Clears popups on featureCount close
         areaSelect.remove(); 
-        mode = 'notFeatureCount';
-    } else { //Applies counting box overlay if mode !== featureCount
+        mode = 'noToolEnabled';
+    } else if (mode === 'noToolEnabled') { //Applies counting box overlay if mode !== featureCount
         mode = 'featureCount';
         areaSelect = L.areaSelect({width:200, height:200}); // Need to make a new one each time for some reason
         areaSelect.addTo(map);
@@ -32,7 +64,15 @@ function countFeatures() {
                 
                 setTimeout(function(){
                     map.spin(false); //Turns off the 'spinner' gif that pops up when the counter is counting
-                    L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map);
+
+                    //Original code to add popup: L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
+                    /** 
+                    let popupLayer = L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found');
+                    featurecountLayerGroup.addLayer(popupLayer);
+                    featurecountLayerGroup.addTo(map);
+                    Issue with adding separate layer is that the popup will not close on click
+                    */
+                    L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
                 },1000);
             }
         };
@@ -40,38 +80,85 @@ function countFeatures() {
         //L.areaSelect({width: x, height: x}).propertyToCall()
         calcArea(areaSelect.getBounds()); // Run it once at load time
         areaSelect.on("change", function() {
+            //featurecountLayerGroup.clearLayers(); //Removes popup when areaSelect changes
             calcArea(this.getBounds());  // Then run it again anytime the box changes
         });
     }
 }
 
-var map = L.map('map', {boxZoom: false});
-L.control.scale().addTo(map); //Adds scale bar to map
-//Creates Tangram as a Leaflet layer
-var layer = Tangram.leafletLayer({
-    scene: 'scene.yaml',
-    attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>',
-    events: {
-        //Adds listener to Tangram layer. On trigger, it runs function showPopup()
-        //2 possibilities: 'click' and 'hover'. Only one popup displays at a time
-        hover: onHover,
-        click: onClick
+/**Use LayerGroup instead of map.removeLayer(layerName) to remove all markers and 
+ * isochrone layers added by renderIsochrone in one fell swoop!
+*/
+var isochroneLayerGroup = new L.LayerGroup();
+function toggleIsochrone() {
+    if (mode === 'isochrone'){
+        mode = 'noToolEnabled';
+        renderIsochrone();
+    } else if (mode === 'noToolEnabled') {
+        mode = 'isochrone';
     }
-});
-layer.addTo(map);
-/** 
- * Coordinates in [] are center point. 
- * Number after ',' sets zoom level. Bigger number = Zoom in more
- * Original in tut: [52.332548, 4.893920], 12
- * For Malaysia: [4.354682, 109.308983], 6
- */
-map.setView([4.354682, 109.308983], 6);
+}
+async function renderIsochrone (latlngObj){
+    if (mode === 'noToolEnabled'){
+        map.spin(true);
+        isochroneLayerGroup.clearLayers();
+        map.spin(false);
+    } else {
+        map.spin(true); //opens 'loading' gif as isochrone loads
+        document.getElementById('mapContainer').style.backgroundColor = '#494d4d8C';
 
-//Tooltips display info where a click is made. 
-//While a popup looks like a bubble with a tail, a tooltip is square with a short tail
-var tooltip = L.tooltip();
-layer.bindTooltip(tooltip);
-map.on('zoom', function(){ layer.closeTooltip() }); // close tooltip when zooming
+        // create targomo client
+        const client = new tgm.TargomoClient('asia', 'RRSOIF28MZJD7PAD2F58207565238');
+
+        // polygons time rings. Time in seconds
+        //5 min: 300, 15 min: 900, 30min: 1800, 1hr: 3600
+        //My free tier limit: 0-1800 seconds, 3 travel times max
+        const travelTimes = [300, 900, 1800];
+
+        // you need to define some options for the polygon service
+        // travelType options: 'walk', 'bike', 'car' or 'transit'
+        const options = {
+            travelType: 'car',
+            travelEdgeWeights: travelTimes,
+            maxEdgeWeight: 1800,
+            edgeWeight: 'time',
+            serializer: 'json'
+        };
+
+        // define the starting point
+        const sources = [{ id: 0, lat: latlngObj.lat, lng: latlngObj.lng }];
+        //Can obtain on click, should pass to this function as a property.
+        //console.log(selection.leaflet_event.latlng);
+        //selection.leaflet_event.latlng returns an object: {lat: xxx, lng: xxx}
+
+        // Add markers for the sources on the map.
+        sources.forEach(source => {
+            let originMarker = L.marker([source.lat, source.lng])
+            isochroneLayerGroup.addLayer(originMarker)
+        });
+
+        // define the polygon overlay
+        const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
+        isochroneGroup.addLayer(polygonOverlayLayer)
+        //polygonOverlayLayer.addTo(map);
+
+        // get the polygons
+        const polygons = await client.polygons.fetch(sources, options);
+        // calculate bounding box for polygons
+        const bounds = polygons.getMaxBounds();
+        // add polygons to overlay
+        polygonOverlayLayer.setData(polygons);
+        // zoom to the polygon bounds
+        //Seems buggy: Clicked location marker shifts when fitBounds is applied onClick
+        //map.fitBounds(new L.latLngBounds(bounds.northEast, bounds.southWest));
+
+        isochroneLayerGroup.addTo(map)
+        map.spin(false); //Closes 'loading' gif once isochrone is rendered
+        //document.getElementById('mapContainer').style.backgroundColor = 'rgba(0,0,0,0)';
+    }
+}
+
+
 /**
  * Adds a comma for every 3 numbers in a number string
  * Output returned as a string
@@ -81,11 +168,11 @@ function formatNumber(x) {
     //regular expression used to format solar power output 
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-function onHover (selection) {
+function onMapHover (selection) {
     //selection = what's underneath the cursor. 'feature' refers to roads, markers, landmarks
     var feature = selection.feature;
     //This determines what happens onHover
-    if (feature) {
+    if (feature && mode === 'noToolEnabled') {
         if (selection.changed) {
             var info;
             
@@ -102,14 +189,14 @@ function onHover (selection) {
                 tooltip.setContent(info);
             }
         }
-        layer.openTooltip(selection.leaflet_event.latlng);
+        tangramLayer.openTooltip(selection.leaflet_event.latlng);
     }
     else { //This closes the tooltip offHover
-        layer.closeTooltip();
+        tangramLayer.closeTooltip();
     }
 }
-function onClick(selection) {
-    if (mode === 'notFeatureCount') {
+function onMapClick(selection) {
+    if (mode === 'noToolEnabled') {
         // '.feature' refers to an area under mouse, 'selection' refers to the hovered/clicked 
         //Only 1 popup can appear at a given time. Other open popups close when another popup-enabled
         //area is clicked/hovered over
@@ -117,16 +204,17 @@ function onClick(selection) {
         if (feature) {
             var info = getFeaturePropsHTML(feature);
             tooltip.setContent(info);
-            layer.openTooltip(selection.leaflet_event.latlng);
+            tangramLayer.openTooltip(selection.leaflet_event.latlng);
+            
         } else {
             //Does what it says: If a click is made outside of the heatmap area, 
             //the tooltip is closed
-            layer.closeTooltip();
+            tangramLayer.closeTooltip();
         }
+    } else if (mode === 'isochrone') {
+        renderIsochrone(selection.leaflet_event.latlng);
     }
 }
-// Popups. closeButton controlled by the little 'x' in the popup.
-var popup = L.popup({closeButton: false});
 // Get an HTML fragment with feature properties
 // Determines what pops up after clicking a feature
 function getFeaturePropsHTML (feature) {
@@ -180,7 +268,7 @@ function getFeaturePropsHTML (feature) {
  * @param {!string} layerName Matches name set in scene.yaml 
  */
 function toggle(layerName) {
-    layer.scene.config.layers["_" + layerName].enabled = !layer.scene.config.layers["_" + layerName].enabled;
+    tangramLayer.scene.config.layers["_" + layerName].enabled = !tangramLayer.scene.config.layers["_" + layerName].enabled;
     //document.getElementById(layerName).status = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
     
     //Code below used for feature counter
@@ -211,7 +299,7 @@ function toggle(layerName) {
         spaceIDSelected.splice(duplicateIndexCheck,1);
     }
 
-    layer.scene.updateConfig();
+    tangramLayer.scene.updateConfig();
 }
 //Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
 function onlyOneHeatmap(checkbox) {

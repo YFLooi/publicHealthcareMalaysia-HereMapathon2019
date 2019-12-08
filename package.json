@@ -4,7 +4,6 @@
   "description": "Test for tutorial at developer.here.com/tutorials/green-amsterdam",
   "main": "server.js",
   "dependencies": {
-    "@turf/turf": "^5.1.6",
     "bootstrap": "^4.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

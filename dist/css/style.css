@@ -4,7 +4,7 @@ body {
     padding: 0px;
     font-family: Helvetica, Arial, sans-serif;
 }
-.mapContainer {
+#mapContainer {
     display: block;
     position: relative;
     height: 600px;
