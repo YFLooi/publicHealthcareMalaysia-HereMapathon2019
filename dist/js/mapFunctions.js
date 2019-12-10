@@ -139,7 +139,7 @@ async function renderIsochrone (latlngObj){
 
         // define the polygon overlay
         const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
-        isochroneGroup.addLayer(polygonOverlayLayer)
+        isochroneLayerGroup.addLayer(polygonOverlayLayer)
         //polygonOverlayLayer.addTo(map);
 
         // get the polygons
