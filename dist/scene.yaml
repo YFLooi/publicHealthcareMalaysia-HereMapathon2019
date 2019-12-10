@@ -12,91 +12,91 @@ sources:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/SoJrBH8I/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     districtBorders:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/sYm0uuVK/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     publicClinicLocations:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/CnsQWqCa/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     nonSpecialistPublicHospitalLocations:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/kWD0C5yR/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     specialistPublicHospitalLocations:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/fFv6HXwU/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapStatePopulation:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/ccooUvui/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapDistrictPopulation:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/5GCJtvcm/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapBirths:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/b9LAgFk9/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapClinics:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/RZqh7uMM/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapDisease:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/xiPWAeQf/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapDoctors:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/WK5SmHwl/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapHospitals:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/d6rYHUHe/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
     heatmapWHOIndices:
         #Tiled endpoint to the data source on HERE xyz
         url: https://xyz.api.here.com/hub/spaces/O5Le1m7f/tile/web/{z}_{x}_{y}
         url_params:
-            access_token: ANOkxlf9QMWB72jUxUuT7AA
+            access_token: AOJe8JAxSau0_goN86YpeQA
             clip: true
         type: GeoJSON
 
