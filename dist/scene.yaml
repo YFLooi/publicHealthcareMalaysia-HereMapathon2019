@@ -118,7 +118,7 @@ textures:
 
 layers:
     _stateBorders:
-        enabled: false
+        enabled: true
         data: {source: stateBorders}
         draw:
             polygons:
@@ -156,7 +156,7 @@ layers:
                     #Stops at zoom x, 1D size px. 
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
                     #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
-                    size: [[6, 15px], [12, 30px], [20, 60px]]
+                    size: [[6, 15px], [12, 40px], [20, 70px]]
     _nonSpecialistPublicHospitalLocations:
         data: {source: nonSpecialistPublicHospitalLocations}
         enabled: false
@@ -172,7 +172,7 @@ layers:
                     #Stops at zoom x, 1D size px. 
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
                     #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
-                    size: [[6, 18px], [12, 33px], [20, 63px]]
+                    size: [[6, 25px], [12, 40px], [20, 70px]]
     _specialistPublicHospitalLocations:
         data: {source: specialistPublicHospitalLocations}
         enabled: false
@@ -188,7 +188,7 @@ layers:
                     #Stops at zoom x, 1D size px. 
                     #For square icons, 1D becomes 2D. If 6px specified, sprite has sides of 6px each  
                     #size: [[6, [auto, 10px]], [12, [auto,20px]], [20, [auto,60px]]]
-                    size: [[6, 18px], [12, 33px], [20, 63px]]
+                    size: [[6, 25px], [12, 40px], [20, 70px]]
     _heatmapStatePopulation:
         enabled: false
         data: {source: heatmapStatePopulation}

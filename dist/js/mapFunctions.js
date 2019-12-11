@@ -96,40 +96,70 @@ function toggleIsochrone() {
         renderIsochrone();
     } else if (mode === 'noToolEnabled') {
         mode = 'isochrone';
+        document.getElementById('isochroneControlBox').style.display = 'block';
     }
 }
+function setTravelTimes (parameter, value) {
+    //isNaN(value)===false if either a string or integer number is entered
+    if (isNaN(value)===false && value >= 1 && value <= 30){
+        travelTimes[parameter] = value*60;
+    } else {
+        alert("Invalid interval (1 to 30 minutes only)");
+    }
+}
+function setTravelType (value) {
+    isochroneOptions["travelType"] = value;
+}
+/**Restrict because impossible to layer more than 1 travel type
+ * @param {!string} button Refers to the button clicked
+ * */
+function onlyOneTravelType(button) {
+    var buttons = document.getElementsByName('travelType')
+    buttons.forEach((item) => {
+        if (item === button && item.checked === "false") { //Acts when unclicked travelType is clicked for 1st time
+            //Marks as 'clicked'
+            console.log(item.checked);
+            console.log(item.style.backgroundColor);
+            item.checked = "true";
+            item.style.backgroundColor = "green";
+        } else if (item !== button && item.checked === "true") { //Acts when a different travelType is selected
+            //Marks as 'not clicked'
+            console.log(item.style.backgroundColor);
+            item.checked = "false";
+            item.style.backgroundColor = "whitesmoke";
+        } 
+    })
+}
+ // polygons time rings. Time in seconds
+//5 min: 300, 15 min: 900, 30min: 1800, 1hr: 3600
+//My free tier limit: 0-1800 seconds, 3 travel times max
+let travelTimes = [1, 1, 1];
+// you need to define some options for the polygon service
+// travelType options: 'walk', 'bike', 'car' or 'transit'
+let isochroneOptions = {
+    travelType: 'car',
+    travelEdgeWeights: travelTimes,
+    maxEdgeWeight: 1800,
+    edgeWeight: 'time',
+    serializer: 'json'
+};
 async function renderIsochrone (latlngObj){
     if (mode === 'noToolEnabled'){
         map.spin(true);
         isochroneLayerGroup.clearLayers();
+        document.getElementById('isochroneControlBox').style.display = 'none';
         map.spin(false);
-    } else {
+    } else if (mode === 'isochrone' && travelTimes[0] >=1 && travelTimes[1] >=1 && travelTimes[2] >=1
+    && travelTimes[0] <=1800 && travelTimes[1] <=1800 && travelTimes[2] <=1800) {
         map.spin(true); //opens 'loading' gif as isochrone loads
-        document.getElementById('mapContainer').style.backgroundColor = '#494d4d8C';
+        document.getElementById('loadingBackground').style.display = 'table-cell';
 
         // create targomo client
         const client = new tgm.TargomoClient('asia', 'RRSOIF28MZJD7PAD2F58207565238');
 
-        // polygons time rings. Time in seconds
-        //5 min: 300, 15 min: 900, 30min: 1800, 1hr: 3600
-        //My free tier limit: 0-1800 seconds, 3 travel times max
-        const travelTimes = [300, 900, 1800];
-
-        // you need to define some options for the polygon service
-        // travelType options: 'walk', 'bike', 'car' or 'transit'
-        const options = {
-            travelType: 'car',
-            travelEdgeWeights: travelTimes,
-            maxEdgeWeight: 1800,
-            edgeWeight: 'time',
-            serializer: 'json'
-        };
-
         // define the starting point
+        //lat-lng obtained onClick @ map
         const sources = [{ id: 0, lat: latlngObj.lat, lng: latlngObj.lng }];
-        //Can obtain on click, should pass to this function as a property.
-        //console.log(selection.leaflet_event.latlng);
-        //selection.leaflet_event.latlng returns an object: {lat: xxx, lng: xxx}
 
         // Add markers for the sources on the map.
         sources.forEach(source => {
@@ -139,23 +169,30 @@ async function renderIsochrone (latlngObj){
 
         // define the polygon overlay
         const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
-        isochroneGroup.addLayer(polygonOverlayLayer)
-        //polygonOverlayLayer.addTo(map);
+        isochroneLayerGroup.addLayer(polygonOverlayLayer)
+        isochroneLayerGroup.addTo(map)
 
         // get the polygons
-        const polygons = await client.polygons.fetch(sources, options);
-        // calculate bounding box for polygons
-        const bounds = polygons.getMaxBounds();
+        const polygons = await client.polygons.fetch(sources, isochroneOptions);
         // add polygons to overlay
         polygonOverlayLayer.setData(polygons);
+
+        // calculate bounding box for polygons
+        //const bounds = polygons.getMaxBounds();
         // zoom to the polygon bounds
         //Seems buggy: Clicked location marker shifts when fitBounds is applied onClick
         //map.fitBounds(new L.latLngBounds(bounds.northEast, bounds.southWest));
-
-        isochroneLayerGroup.addTo(map)
+        
         map.spin(false); //Closes 'loading' gif once isochrone is rendered
-        //document.getElementById('mapContainer').style.backgroundColor = 'rgba(0,0,0,0)';
+        document.getElementById('loadingBackground').style.display = 'none';
+    } else{
+        alert("Invalid interval (1 to 30 minutes only)");
     }
+}
+function resetIsochrone () {
+    map.spin(true);
+    isochroneLayerGroup.clearLayers();
+    map.spin(false);
 }
 
 

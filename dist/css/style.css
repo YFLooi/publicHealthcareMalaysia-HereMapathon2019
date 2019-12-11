@@ -1,7 +1,7 @@
 body {
-    margin: 0px;
     border: 0px;
     padding: 0px;
+    width: 95%;
     font-family: Helvetica, Arial, sans-serif;
 }
 #mapContainer {
@@ -13,10 +13,59 @@ body {
     border: 0px;
     padding: 0px;
 }
+#loadingBackground{
+    width: 100%;
+    height: 100%;
+    background-color: #494d4d8C;
+    z-index: 99998;
+    position: absolute;
+    display: none; /*Becomes table-cell on show*/
+    
+    /*For background text*/
+    color: white;
+    text-align: center;
+    line-height: 450px;
+    font-size: 30px;
+}
 #map {
     height: 100%;
     width: 100%;
 }
+#isochroneControlBox {
+    position: absolute;
+    padding: 1%;
+    display: none;
+    z-index: 99997;
+    top: 60px;
+    right:10px; 
+    width: 35%;
+    background-color: rgb(0, 102, 255);
+    border-radius: 5px;
+}
+#isochroneTransportModes {
+    width: 100%;
+    display: "flex";
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    flex-shrink: 0.5;
+}
+#isochroneTransportModes button {
+    width: 30%;
+    margin-top: 5px;
+}
+#isochroneIntervals {
+    width: 100%;
+    display: "flex";
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    flex-shrink: 0.5;
+}
+#isochroneIntervals input {
+    width: 30%;
+}
+
 #showControlBoxButton {
     position: absolute;
     display: block;
@@ -67,11 +116,17 @@ body {
     overflow-y: scroll;
     padding: 0 5%;
 }
+.controlButtons button {
+    margin-top: 5px;
+}
 .heatmapCheckboxes {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+label {
+    width: 95%; /*Stops <label>-s from bleeding out of flexbox container*/
 }
 
 .progressBarBox {
@@ -102,7 +157,6 @@ td, th {
     text-align: left;
     padding: 8px;
 }
-
 tr:nth-child(even) {
     background-color: #dbaaaa;
 }
