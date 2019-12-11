@@ -170,7 +170,11 @@ async function renderIsochrone (latlngObj){
         // define the polygon overlay
         const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
         isochroneLayerGroup.addLayer(polygonOverlayLayer)
+<<<<<<< HEAD
         isochroneLayerGroup.addTo(map)
+=======
+        //polygonOverlayLayer.addTo(map);
+>>>>>>> 4c2e28f0f63dec145fc340ef08fb09a66ed7db31
 
         // get the polygons
         const polygons = await client.polygons.fetch(sources, isochroneOptions);
