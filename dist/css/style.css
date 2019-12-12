@@ -47,11 +47,10 @@ body {
     display: "flex";
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content:space-evenly;
-    flex-shrink: 0.5;
+    justify-content: center;
 }
 #isochroneTransportModes button {
-    width: 30%;
+    width: 24%;
     margin-top: 5px;
 }
 #isochroneIntervals {
@@ -59,8 +58,7 @@ body {
     display: "flex";
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content:space-evenly;
-    flex-shrink: 0.5;
+    justify-content: center;
 }
 #isochroneIntervals input {
     width: 30%;

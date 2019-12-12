@@ -29,18 +29,27 @@ map.on('zoom', function(){ tangramLayer.closeTooltip() }); // close tooltip when
 
 //Determines if popups to be shown or counter enabled
 var mode = 'noToolEnabled';
+/**
+ * Closes all open tools to prevent conflicts before another tool is opened
+ */
+function closeOpenTool () {
+    if (mode === 'featureCount') { 
+        countFeatures();
+    } else if (mode === 'isochrone') { 
+        mode = 'noToolEnabled';
+        renderIsochrone();
+    }
+}
 //Determines which feature counter should count
 var spaceIDSelected = [];
 // Popups. closeButton controlled by the little 'x' in the popup.
 var popup = L.popup({closeButton: false});
-//var featurecountLayerGroup = new L.LayerGroup();
 //counts number of features in bounding box
 function countFeatures() {
     //Removes counting box overlay on 2nd click of 'Count features' button
     if (mode === 'featureCount') {
-        featurecountLayerGroup.isOpen(); //Clears popups on featureCount close
         areaSelect.remove(); 
-        mode = 'noToolEnabled';
+        mode = 'noToolEnabled';    
     } else if (mode === 'noToolEnabled') { //Applies counting box overlay if mode !== featureCount
         mode = 'featureCount';
         areaSelect = L.areaSelect({width:200, height:200}); // Need to make a new one each time for some reason
@@ -66,12 +75,6 @@ function countFeatures() {
                     map.spin(false); //Turns off the 'spinner' gif that pops up when the counter is counting
 
                     //Original code to add popup: L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
-                    /** 
-                    let popupLayer = L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found');
-                    featurecountLayerGroup.addLayer(popupLayer);
-                    featurecountLayerGroup.addTo(map);
-                    Issue with adding separate layer is that the popup will not close on click
-                    */
                     L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
                 },1000);
             }
@@ -80,13 +83,13 @@ function countFeatures() {
         //L.areaSelect({width: x, height: x}).propertyToCall()
         calcArea(areaSelect.getBounds()); // Run it once at load time
         areaSelect.on("change", function() {
-            //featurecountLayerGroup.clearLayers(); //Removes popup when areaSelect changes
             calcArea(this.getBounds());  // Then run it again anytime the box changes
         });
     }
 }
 
-/**Use LayerGroup instead of map.removeLayer(layerName) to remove all markers and 
+/**
+ * Use LayerGroup instead of map.removeLayer(layerName) to remove all markers and 
  * isochrone layers added by renderIsochrone in one fell swoop!
 */
 var isochroneLayerGroup = new L.LayerGroup();
@@ -112,20 +115,16 @@ function setTravelType (value) {
 }
 /**Restrict because impossible to layer more than 1 travel type
  * @param {!string} button Refers to the button clicked
- * */
+ */
 function onlyOneTravelType(button) {
     var buttons = document.getElementsByName('travelType')
+
     buttons.forEach((item) => {
-        if (item === button && item.checked === "false") { //Acts when unclicked travelType is clicked for 1st time
+        if (item === button) { //Acts when unclicked travelType is clicked for 1st time
             //Marks as 'clicked'
-            console.log(item.checked);
-            console.log(item.style.backgroundColor);
-            item.checked = "true";
             item.style.backgroundColor = "green";
-        } else if (item !== button && item.checked === "true") { //Acts when a different travelType is selected
+        } else if (item !== button) { //Clears any prior-selected travel types
             //Marks as 'not clicked'
-            console.log(item.style.backgroundColor);
-            item.checked = "false";
             item.style.backgroundColor = "whitesmoke";
         } 
     })
@@ -170,11 +169,7 @@ async function renderIsochrone (latlngObj){
         // define the polygon overlay
         const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
         isochroneLayerGroup.addLayer(polygonOverlayLayer)
-<<<<<<< HEAD
         isochroneLayerGroup.addTo(map)
-=======
-        //polygonOverlayLayer.addTo(map);
->>>>>>> 4c2e28f0f63dec145fc340ef08fb09a66ed7db31
 
         // get the polygons
         const polygons = await client.polygons.fetch(sources, isochroneOptions);
