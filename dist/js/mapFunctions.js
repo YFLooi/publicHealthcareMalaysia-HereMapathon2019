@@ -32,13 +32,61 @@ var mode = 'noToolEnabled';
 /**
  * Closes all open tools to prevent conflicts before another tool is opened
  */
-function closeOpenTool () {
-    if (mode === 'featureCount') { 
-        countFeatures();
-    } else if (mode === 'isochrone') { 
-        mode = 'noToolEnabled';
-        renderIsochrone();
+function selectTool (tool) {
+    function resetTravelTimes() {
+        //Resets all travelTimes and isochrone interval input to '1'
+        //Do this when renderIsochrone launches and closes to prevent any chance of 'no-reset'
+        //Don't do travelTimes = [1,1,1]. This immutable method bugs Targomo!
+        travelTimes[0] = 1;
+        travelTimes[1] = 1;
+        travelTimes[2] = 1;
+
+        document.getElementById("travelTime1").value = 1;
+        document.getElementById("travelTime2").value = 1;
+        document.getElementById("travelTime3").value = 1;
     }
+    
+    //Opens tool on button click if noToolEnabled
+    if (tool === 'countFeatures' && mode === 'noToolEnabled') { 
+        mode = 'countFeatures';
+        countFeatures();
+    } else if (tool === 'renderIsochrone' && mode === 'noToolEnabled') { 
+        mode = 'renderIsochrone'
+        document.getElementById('isochroneControlBox').style.display = 'block';
+        resetTravelTimes();
+        
+    //Closes tool when button for that tool clicled
+    } else if(tool === 'countFeatures' && mode === 'countFeatures'){
+        //Removes counting box overlay on 2nd click of 'Count features' button
+        areaSelect.remove();
+        mode = 'noToolEnabled';
+    } else if (tool === 'renderIsochrone' && mode === 'renderIsochrone'){
+        map.spin(true);
+        isochroneLayerGroup.clearLayers();
+        resetTravelTimes();
+
+        document.getElementById('isochroneControlBox').style.display = 'none';
+        map.spin(false);
+    
+        mode = 'noToolEnabled'
+    
+    //Closes open tool when another tool selected
+    } else if(tool === 'countFeatures' && mode === 'renderIsochrone'){
+        map.spin(true);
+        isochroneLayerGroup.clearLayers();
+        resetTravelTimes();
+
+        document.getElementById('isochroneControlBox').style.display = 'none';
+        map.spin(false);
+   
+        mode = 'countFeatures'
+        countFeatures();
+    } else if (tool === 'renderIsochrone' && mode === 'countFeatures'){
+        //Removes counting box overlay on 2nd click of 'Count features' button
+        areaSelect.remove();
+        mode = 'renderIsochrone';
+        document.getElementById('isochroneControlBox').style.display = 'block';
+    }  
 }
 //Determines which feature counter should count
 var spaceIDSelected = [];
@@ -46,46 +94,38 @@ var spaceIDSelected = [];
 var popup = L.popup({closeButton: false});
 //counts number of features in bounding box
 function countFeatures() {
-    //Removes counting box overlay on 2nd click of 'Count features' button
-    if (mode === 'featureCount') {
-        areaSelect.remove(); 
-        mode = 'noToolEnabled';    
-    } else if (mode === 'noToolEnabled') { //Applies counting box overlay if mode !== featureCount
-        mode = 'featureCount';
-        areaSelect = L.areaSelect({width:200, height:200}); // Need to make a new one each time for some reason
-        areaSelect.addTo(map);
+    areaSelect = L.areaSelect({width:200, height:200}); // Need to make a new one each time for some reason
+    areaSelect.addTo(map);
 
-        function calcArea(bounds) {
-            if (mode == 'featureCount') { // Prevent this from accidentally running in the other mode
-                map.spin(true);
-                var totalFeatures = 0;
-                var spaceID = spaceIDSelected; //Obtains count of coordinates in this data set within counting box!
-                var accessToken = 'ANOkxlf9QMWB72jUxUuT7AA';
+    async function calcArea(bounds) {  
+        if(mode === 'countFeatures'){ //Conditional required, otherwise thsi function will keep running!
+            map.spin(true);
+            var totalFeatures = 0;
+            var spaceID = spaceIDSelected; //Obtains count of coordinates in this data set within counting box!
+            var accessToken = 'ANOkxlf9QMWB72jUxUuT7AA';
 
-                for(let i=0; i<spaceID.length; i++){
-                    var url = 'https://xyz.api.here.com/hub/spaces/' + spaceID[i] + '/bbox?access_token=' + accessToken + '&west=' + bounds.getWest() + '&south=' + bounds.getSouth() + '&east=' + bounds.getEast() + '&north=' + bounds.getNorth();
-                
-                    fetch(url).then((response) => response.json()).then(function(data) {
-                        var len = data.features.length;
-                        totalFeatures = totalFeatures + parseFloat(len);
-                    });
-                }
-                
-                setTimeout(function(){
-                    map.spin(false); //Turns off the 'spinner' gif that pops up when the counter is counting
-
-                    //Original code to add popup: L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
-                    L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
-                },1000);
+            for(let i=0; i<spaceID.length; i++){
+                var url = 'https://xyz.api.here.com/hub/spaces/' + spaceID[i] + '/bbox?access_token=' + accessToken + '&west=' + bounds.getWest() + '&south=' + bounds.getSouth() + '&east=' + bounds.getEast() + '&north=' + bounds.getNorth();
+            
+                /*If not for async-await, the popup will appear with totalFeatures=0 before all fetch 
+                requests are completed!!*/
+                await fetch(url).then((response) => response.json()).then(function(data) {
+                    var len = data.features.length;
+                    totalFeatures = totalFeatures + parseFloat(len);
+                });
             }
-        };
-        //To call on one of the properties of L.class in leaflet-areaselect.js, follow this syntax:
-        //L.areaSelect({width: x, height: x}).propertyToCall()
-        calcArea(areaSelect.getBounds()); // Run it once at load time
-        areaSelect.on("change", function() {
-            calcArea(this.getBounds());  // Then run it again anytime the box changes
-        });
-    }
+            
+            map.spin(false); //Turns off the 'spinner' gif that pops up when the counter is counting
+            //Original code to add popup: L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
+            await L.popup().setLatLng(map.getCenter()).setContent(formatNumber(totalFeatures) + ' features found').openOn(map)
+        }   
+    };
+    //To call on one of the properties of L.class in leaflet-areaselect.js, follow this syntax:
+    //L.areaSelect({width: x, height: x}).propertyToCall()
+    calcArea(areaSelect.getBounds()); // Run it once at load time
+    areaSelect.on("change", function() {
+        calcArea(this.getBounds());  // Then run it again anytime the box changes
+    });
 }
 
 /**
@@ -93,15 +133,6 @@ function countFeatures() {
  * isochrone layers added by renderIsochrone in one fell swoop!
 */
 var isochroneLayerGroup = new L.LayerGroup();
-function toggleIsochrone() {
-    if (mode === 'isochrone'){
-        mode = 'noToolEnabled';
-        renderIsochrone();
-    } else if (mode === 'noToolEnabled') {
-        mode = 'isochrone';
-        document.getElementById('isochroneControlBox').style.display = 'block';
-    }
-}
 function setTravelTimes (parameter, value) {
     //isNaN(value)===false if either a string or integer number is entered
     if (isNaN(value)===false && value >= 1 && value <= 30){
@@ -142,13 +173,11 @@ let isochroneOptions = {
     edgeWeight: 'time',
     serializer: 'json'
 };
+//Activated by clicking on map after 'renderIsochrones' is clicked
 async function renderIsochrone (latlngObj){
-    if (mode === 'noToolEnabled'){
-        map.spin(true);
-        isochroneLayerGroup.clearLayers();
-        document.getElementById('isochroneControlBox').style.display = 'none';
-        map.spin(false);
-    } else if (mode === 'isochrone' && travelTimes[0] >=1 && travelTimes[1] >=1 && travelTimes[2] >=1
+    console.log(latlngObj);
+    console.log(travelTimes);
+    if (travelTimes[0] >=1 && travelTimes[1] >=1 && travelTimes[2] >=1
     && travelTimes[0] <=1800 && travelTimes[1] <=1800 && travelTimes[2] <=1800) {
         map.spin(true); //opens 'loading' gif as isochrone loads
         document.getElementById('loadingBackground').style.display = 'table-cell';
@@ -168,13 +197,15 @@ async function renderIsochrone (latlngObj){
 
         // define the polygon overlay
         const polygonOverlayLayer = new tgm.leaflet.TgmLeafletPolygonOverlay({ strokeWidth: 20 });
-        isochroneLayerGroup.addLayer(polygonOverlayLayer)
-        isochroneLayerGroup.addTo(map)
 
         // get the polygons
         const polygons = await client.polygons.fetch(sources, isochroneOptions);
         // add polygons to overlay
         polygonOverlayLayer.setData(polygons);
+
+        //Add overlayLayer to isochroneLayerGroup for addTo map. THis displays the isochrone
+        isochroneLayerGroup.addLayer(polygonOverlayLayer)
+        isochroneLayerGroup.addTo(map)
 
         // calculate bounding box for polygons
         //const bounds = polygons.getMaxBounds();
@@ -247,7 +278,7 @@ function onMapClick(selection) {
             //the tooltip is closed
             tangramLayer.closeTooltip();
         }
-    } else if (mode === 'isochrone') {
+    } else if (mode === 'renderIsochrone') {
         renderIsochrone(selection.leaflet_event.latlng);
     }
 }

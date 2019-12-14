@@ -340,7 +340,7 @@ layers:
                 color: green
                 width: 2px
     _heatmapHandFootMouthDisease:
-        enabled: true
+        enabled: false
         data: {source: heatmapDisease}
         draw:
             polygons:

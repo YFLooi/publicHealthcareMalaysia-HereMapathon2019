@@ -37,13 +37,7 @@
 
     <!--  For rendering isochrones: Targomo leaflet full build -->
     <script src="https://releases.targomo.com/leaflet/latest-full.min.js"></script>
-    <script>
-      window.onload = function(){
-        document.getElementById("1stTravelTime").value = 1;
-        document.getElementById("2ndTravelTime").value = 1;
-        document.getElementById("3rdyTravelTime").value = 1;
-      }
-    </script>
+    
   </head>
   <body class='container'>
     <div style="width:100%; height: 60px; margin-top: 10px; margin-bottom: 10px; overflow-x: visible; background-image: url('./iconFiles/banner.PNG'); background-size: contain; background-repeat: no-repeat;"></div>    
@@ -66,12 +60,13 @@
         </div>
         <div id="isochroneIntervals">
             <h6>Intervals (max 30 minutes)</h6>
-            <input id="1stTravelTime" placeholder="1st" type="number" pattern="[0-9]" value="1" min="1" max="30" onchange="setTravelTimes(0, this.value)"></input>
-            <input id="2ndTravelTime" placeholder="2nd" type="number" pattern="[0-9]" value="1" min="1" max="30" onchange="setTravelTimes(1, this.value)"></input>
-            <input id="3rdTravelTime" placeholder="3rd" type="number" pattern="[0-9]" value="1" min="1" max="30" onchange="setTravelTimes(2, this.value)"></input>
+            <input id="travelTime1" placeholder="1st" type="number" pattern="[0-9]" value="1" min="1" max="30" onchange="setTravelTimes(0, this.value)"></input>
+            <input id="travelTime2" placeholder="2nd" type="number" pattern="[0-9]" value="1" min="1" max="30" onchange="setTravelTimes(1, this.value)"></input>
+            <input id="travelTime3" placeholder="3rd" type="number" pattern="[0-9]" value="1" min="1" max="30" onchange="setTravelTimes(2, this.value)"></input>
         </div>
         <button style="margin-top: 5px;" onclick="resetIsochrone()">Clear isochrones</button>
       </div>
+
       <div id="layerControlBox">
         <div class="layerControls">
           <div class="layerControlsHeader">
@@ -82,8 +77,8 @@
           <div class="layerControlsBody">
             <div class="controlButtons" style="width: 50%; padding: 1%; border: 1px solid black;">
               <h3 style='width:100%;'>Tools</h3>
-              <button type='button' class='btn btn-primary' onclick="closeOpenTool(); countFeatures();">Count features</button>
-              <button type='button' class='btn btn-secondary' onclick="closeOpenTool(); toggleIsochrone();">Render isochrones</button>
+              <button type='button' class='btn btn-primary' onclick="selectTool('countFeatures');">Count features</button>
+              <button type='button' class='btn btn-secondary' onclick="selectTool('renderIsochrone');">Render isochrone</button>
             </div>
             <div class="featuresCheckboxes" style="width: 50%; padding: 1%; border: 1px solid black;">
               <h3 style='width:100%;'>Features</h3>
@@ -106,7 +101,7 @@
               </div>
               <div class="diseaseHeatmaps" style="width: 50%; padding: 1%;">
                 <h5>Disease</h5>
-                <input id="heatmapHandFootMouthDisease" checked="true" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHandFootMouthDisease');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHandFootMouthDisease">Cases of hand-foot-mouth disease</label><br/>
+                <input id="heatmapHandFootMouthDisease" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHandFootMouthDisease');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHandFootMouthDisease">Cases of hand-foot-mouth disease</label><br/>
                 <input id="heatmapAIDS" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapAIDS');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapAIDS">Cases of AIDS</label><br/>
                 <input id="heatmapHIV" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapHIV');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapHIV">Cases of HIV</label><br/>
                 <input id="heatmapTB" type="checkbox" name="checkHeatmap" onclick="onlyOneHeatmap(this); toggle('heatmapTB');" autocomplete="off">&nbsp;&nbsp;<label for="heatmapTB">Cases of tuberculosis (TB)</label><br/>
