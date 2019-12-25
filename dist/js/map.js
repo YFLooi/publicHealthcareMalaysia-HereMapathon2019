@@ -136,6 +136,7 @@ function getFeaturePropsHTML (feature) {
  * @param {!string} layerName Matches name set in scene.yaml 
  */
 function toggle(layerName) {
+    map.spin(true); //opens 'loading' gif as isochrone loads
     tangramLayer.scene.config.layers["_" + layerName].enabled = !tangramLayer.scene.config.layers["_" + layerName].enabled;
     //document.getElementById(layerName).status = layer.scene.config.layers["_" + layerName].enabled ? "on" : "off";
     
@@ -168,6 +169,7 @@ function toggle(layerName) {
     }
 
     tangramLayer.scene.updateConfig();
+    map.spin(false); 
 }
 //Impossible to layer more than 1 heatmap at a time to make sense. Hence, restrict to only 1 at a time
 function onlyOneHeatmap(checkbox) {

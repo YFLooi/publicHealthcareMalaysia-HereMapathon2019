@@ -60,6 +60,7 @@ function selectTool (tool) {
         document.getElementById('isochroneControlBox').style.display = 'block';
     }  
 }
+
 //Determines which feature counter should count
 var spaceIDSelected = [];
 // Popups. closeButton controlled by the little 'x' in the popup.
