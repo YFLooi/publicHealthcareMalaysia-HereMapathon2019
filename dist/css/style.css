@@ -60,7 +60,7 @@ body {
 /*Special setting for screen similar to landscape-mobile*/
 @media screen and (min-height : 300px) and (max-height : 400px){
     #mapContainer {
-        height: 250px;
+        height: 200px;
     }
     #isochroneControlBox {
         display: absolute;
