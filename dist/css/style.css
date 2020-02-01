@@ -6,7 +6,7 @@ body {
 }
 #banner {
     width:100%; 
-    height: 60px; 
+    height: 45px; 
     margin-top: 10px; 
     margin-bottom: 10px; 
     overflow-x: visible; 
@@ -36,10 +36,11 @@ body {
         width: 50%
     }
 }    
-/*Special setting for screen similar to portrait-mobile*/
+/*Special setting for screen similar to portrait-mobile
+Needs to account for address bar in mobile browser*/
 @media screen and (min-width : 0px) and (max-width : 768px){
     #mapContainer {
-        height: 450px;
+        height: 420px;
     }
     #isochroneControlBox {
         position: absolute;
