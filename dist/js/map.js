@@ -19,14 +19,24 @@ tangramLayer.addTo(map);
  * Original in tut: [52.332548, 4.893920], 12
  * For Malaysia: [4.354682, 109.308983], 6
  */
-map.setView([4.354682, 109.308983], 6);
+map.setView([4.354682, 109.308983], setZoom());
 //Tooltips display info where a click is made. 
 //While a popup looks like a bubble with a tail, a tooltip is square with a short tail
 var tooltip = L.tooltip();
 tangramLayer.bindTooltip(tooltip);
 map.on('zoom', function(){ tangramLayer.closeTooltip() }); // close tooltip when zooming
 
+function setZoom(){
+    const screenWidth = window.innerWidth;
 
+    if (screenWidth > 1000){
+        return 6;
+    } else if (screenWidth < 1000 && screenWidth > 400) {
+        return 5;
+    } else if (screenWidth < 400) {
+        return 4;
+    }
+}
 /**
  * Adds a comma for every 3 numbers in a number string
  * Output returned as a string
@@ -133,7 +143,7 @@ function getFeaturePropsHTML (feature) {
 
 /**
  * Show/hide layers by setting the _layer.enabled value to true/false respectively
- * @param {!string} layerName Matches name set in scene.yaml 
+ * @param {string} layerName Matches name set in scene.yaml 
  */
 function toggle(layerName) {
     map.spin(true); //opens 'loading' gif as isochrone loads

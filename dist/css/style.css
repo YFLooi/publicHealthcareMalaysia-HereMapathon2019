@@ -1,13 +1,89 @@
 body {
     border: 0px;
-    padding: 0px;
-    width: 95%;
+    padding: 20px;
+    width: 100%;
     font-family: Helvetica, Arial, sans-serif;
 }
+#banner {
+    width:100%; 
+    height: 60px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    overflow-x: visible; 
+    background-image: url('../iconFiles/banner.PNG'); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+}
+
+/*Special setting for screens larger than mobile*/
+@media screen and (min-width : 769px) {
+    #mapContainer {
+        height: 600px;
+    }
+    #isochroneControlBox {
+        position: absolute;
+        padding: 1%;
+        display: none;
+        z-index: 99997;
+        top: 60px;
+        right:10px; 
+        width: 25%;
+        background-color: rgb(0, 102, 255);
+        border-radius: 5px;
+    }
+    .heatmapCheckboxBox{
+        padding: 1%;
+        width: 50%
+    }
+}    
+/*Special setting for screen similar to portrait-mobile*/
+@media screen and (min-width : 0px) and (max-width : 768px){
+    #mapContainer {
+        height: 500px;
+    }
+    #isochroneControlBox {
+        position: absolute;
+        padding: 1%;
+        display: none;
+        z-index: 99997;
+        top: 60px;
+        right:10px; 
+        width: 45%;
+        background-color: rgb(0, 102, 255);
+        border-radius: 5px;
+    }
+    .heatmapCheckboxBox{
+        padding: 1%;
+        width: 100%
+    }
+}
+/*Special setting for screen similar to landscape-mobile*/
+@media screen and (min-height : 300px) and (max-height : 400px){
+    #mapContainer {
+        height: 250px;
+    }
+    #isochroneControlBox {
+        display: absolute;
+        padding: 1%;
+        display: none;
+        z-index: 99997;
+        top: 60px;
+        right:10px; 
+        max-width: 35%;
+        max-height: 70%;
+        background-color: rgb(0, 102, 255);
+        border-radius: 5px;
+        overflow-y: scroll;
+    }
+    .heatmapCheckboxBox{
+        padding: 1%;
+        width: 50%
+    }
+}
+
 #mapContainer {
     display: block;
     position: relative;
-    height: 600px;
     width: 100%;
     margin: 0 0 0 0;
     border: 0px;
@@ -31,17 +107,6 @@ body {
     height: 100%;
     width: 100%;
 }
-#isochroneControlBox {
-    position: absolute;
-    padding: 1%;
-    display: none;
-    z-index: 99997;
-    top: 60px;
-    right:10px; 
-    width: 35%;
-    background-color: rgb(0, 102, 255);
-    border-radius: 5px;
-}
 #isochroneTransportModes {
     width: 100%;
     display: "flex";
@@ -50,8 +115,11 @@ body {
     justify-content: center;
 }
 #isochroneTransportModes button {
-    width: 24%;
+    width: 22%;
     margin-top: 5px;
+}
+#isochroneTransportModes button img{
+    width: 100%;
 }
 #isochroneIntervals {
     width: 100%;
@@ -102,7 +170,7 @@ body {
 }
 .layerControlsHeader {
     width: 100%; 
-    height: 10%; 
+    min-height: 30px; 
 }
 .layerControlsBody {
     width: 100%; 
@@ -116,6 +184,7 @@ body {
 }
 .controlButtons button {
     margin-top: 5px;
+    max-width: 98%;
 }
 .heatmapCheckboxes {
     display: flex;
@@ -123,10 +192,21 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-label {
-    width: 95%; /*Stops <label>-s from bleeding out of flexbox container*/
+.heatmapCheckboxBox label {
+    max-width: 90%; /*Stops <label>-s from bleeding out of flexbox container*/
 }
 
+.progressBarButtonBox{
+    display: flex;
+}
+.progressBarButton{
+    max-width: 250px;
+    min-height: 40px;
+    font-size: 18;
+}
+.progressBarButton img{
+    width: 20%;
+}
 .progressBarBox {
     height: auto; 
     padding: 5px 5px; 
@@ -144,11 +224,15 @@ label {
 .progressBar:hover {
     border: 2px solid whitesmoke;
 }
+.progressBarLabel {
+    color: white;
+}
 
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    max-width: 100%;
+    overflow-x: scroll;
 }
 td, th {
     border: 1px solid #000000;
