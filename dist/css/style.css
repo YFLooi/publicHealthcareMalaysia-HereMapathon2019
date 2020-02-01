@@ -1,6 +1,6 @@
 body {
     border: 0px;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -18,7 +18,7 @@ body {
 /*Special setting for screens larger than mobile*/
 @media screen and (min-width : 769px) {
     #mapContainer {
-        height: 600px;
+        height: 480px;
     }
     #isochroneControlBox {
         position: absolute;
@@ -39,7 +39,7 @@ body {
 /*Special setting for screen similar to portrait-mobile*/
 @media screen and (min-width : 0px) and (max-width : 768px){
     #mapContainer {
-        height: 500px;
+        height: 450px;
     }
     #isochroneControlBox {
         position: absolute;
