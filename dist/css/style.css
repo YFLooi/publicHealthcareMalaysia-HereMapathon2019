@@ -107,6 +107,17 @@ body {
     height: 100%;
     width: 100%;
 }
+/*To prevent tooltip text from spilling out*/
+.leaflet-tooltip{
+    min-width: 200px;
+    min-height: 150px;
+}
+.leaflet-tooltip .featureCell{
+    /*Allows text container '.featureCell' to wrap. This prevents
+    long addresses from spilling out*/
+    white-space: normal;
+}
+
 #isochroneTransportModes {
     width: 100%;
     display: "flex";
@@ -145,7 +156,8 @@ body {
     right:10px; 
     text-align: center; 
     width: 70px; 
-    opacity: 0.5; 
+    opacity: 1; 
+    border: 2px solid black;
 }
 #layerControlBox {
     background-color: rgba(0,0,0,0.5);
